@@ -1,0 +1,6 @@
+{
+  "name": "Vitrina v2 - Alquiler de Apps Comerciales",
+  "description": "Plataforma profesional de alquiler de aplicaciones web personalizadas para barberías, salones de belleza, pet shops, moda y gastronomía.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
