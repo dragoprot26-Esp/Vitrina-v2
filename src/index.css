@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: #0F1012;
+    color: #F9F6F0;
+  }
+
+  h1, h2, h3, .font-serif {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+}
+
+/* Custom Editorial Gold Colors and Utility Classes */
+.bg-gold {
+  background-color: #C5A059;
+}
+
+.text-gold {
+  color: #C5A059;
+}
+
+.border-gold {
+  border-color: #C5A059;
+}
+
+.border-gold-30 {
+  border-color: rgba(197, 160, 89, 0.3);
+}
+
+.border-gold-50 {
+  border-color: rgba(197, 160, 89, 0.5);
+}
+
+.bg-gold-10 {
+  background-color: rgba(197, 160, 89, 0.1);
+}
+
+.bg-gold-20 {
+  background-color: rgba(197, 160, 89, 0.2);
+}
+
+/* Editorial Dark Container Colors */
+.bg-editorial-dark {
+  background-color: #0F1012;
+}
+
+.bg-editorial-card {
+  background-color: #1A1C20;
+}
+
+.bg-editorial-surface {
+  background-color: #141619;
+}
+
+/* Custom Scrollbar for Editorial Theme */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0F1012;
+}
+::-webkit-scrollbar-thumb {
+  background: #2A2D34;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C5A059;
+}
