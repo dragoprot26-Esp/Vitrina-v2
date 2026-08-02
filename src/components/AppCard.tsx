@@ -167,13 +167,13 @@ export const AppCard: React.FC<AppCardProps> = ({
             <>
               <button
                 onClick={handlePrevImage}
-                className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/80 hover:bg-[#C5A059] hover:text-black text-white border border-white/20 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-all"
+                className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/80 hover:bg-[#C5A059] hover:text-black text-white border border-white/20 flex items-center justify-center opacity-90 hover:opacity-100 transition-all"
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
               <button
                 onClick={handleNextImage}
-                className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/80 hover:bg-[#C5A059] hover:text-black text-white border border-white/20 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-all"
+                className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/80 hover:bg-[#C5A059] hover:text-black text-white border border-white/20 flex items-center justify-center opacity-90 hover:opacity-100 transition-all"
               >
                 <ChevronRight className="w-4 h-4" />
               </button>
