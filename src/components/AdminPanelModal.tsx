@@ -1495,7 +1495,7 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
                     {apps.map((app) => (
                       <div
                         key={app.id}
-                        className="bg-[#0F1012] p-4 border border-white/10 flex items-center justify-between gap-4"
+                        className={`bg-[#0F1012] p-4 border flex items-center justify-between gap-4 ${app.isActive ? 'border-white/10' : 'border-white/10 opacity-50'}`}
                       >
                         <div className="flex items-center gap-3 overflow-hidden">
                           <img
@@ -1519,6 +1519,18 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
                         </div>
 
                         <div className="flex items-center gap-1 shrink-0">
+                          <button
+                            onClick={() => onUpdateApp({ ...app, isActive: !app.isActive })}
+                            className={`p-2 border transition-colors ${
+                              app.isActive
+                                ? 'bg-emerald-500/15 border-emerald-500/50 text-emerald-400 hover:bg-emerald-500/25'
+                                : 'bg-[#1A1C20] border-white/10 text-white/40 hover:text-white hover:border-white/30'
+                            }`}
+                            title={app.isActive ? 'Visible en la web — clic para ocultar' : 'Oculta — clic para publicar'}
+                          >
+                            {app.isActive ? <CheckSquare className="w-4 h-4" /> : <Square className="w-4 h-4" />}
+                          </button>
+
                           <button
                             onClick={() => {
                               setEditingAppId(app.id);
