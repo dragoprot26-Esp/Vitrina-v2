@@ -604,7 +604,7 @@ export const AppDemoModal: React.FC<AppDemoModalProps> = ({
             className="px-6 py-2.5 bg-[#C5A059] text-black font-bold text-xs uppercase tracking-widest hover:bg-[#d4b068] transition-all flex items-center gap-2 shadow-lg"
           >
             <Sparkles className="w-4 h-4" />
-            <span>Alquilar {app.name} ($15.000/mes)</span>
+            <span>Alquilar {app.name} (desde ${app.monthlyPrice.toLocaleString('es-AR')}/mes)</span>
           </button>
         </div>
       </div>
