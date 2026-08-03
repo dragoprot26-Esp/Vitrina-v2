@@ -1,0 +1,16 @@
+{
+  "name": "Vitrina v2 — Alquiler de Apps Comerciales",
+  "short_name": "Vitrina v2",
+  "description": "Catálogo y panel de alquiler de aplicaciones comerciales multitenant.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0F1012",
+  "theme_color": "#0F1012",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
