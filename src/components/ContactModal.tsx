@@ -132,11 +132,15 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                   className="w-full bg-[#0F1012] border border-white/10 px-3.5 py-2.5 text-xs text-[#F9F6F0] focus:outline-none focus:border-[#C5A059]"
                 >
                   <option value="barberia">Barbería & Peluquería</option>
-                  <option value="estetica">Salón de Uñas & Estética</option>
-                  <option value="moda">Calzado & Boutique</option>
+                  <option value="estetica">Uñas, Estética & Belleza</option>
+                  <option value="moda">Moda & Calzado</option>
                   <option value="gastronomia">Gastronomía & Fast Food</option>
                   <option value="petshop">Pet Shop & Veterinaria</option>
                   <option value="masajes">Masajes & Spa</option>
+                  <option value="salud">Salud & Dietética</option>
+                  <option value="almacen">Almacén & Tienda</option>
+                  <option value="fitness">Gimnasio & Fitness</option>
+                  <option value="entretenimiento">Entretenimiento & Eventos</option>
                 </select>
               </div>
 
@@ -159,7 +163,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
               className="w-full py-3.5 bg-[#C5A059] text-black font-bold text-xs uppercase tracking-widest hover:bg-[#d4b068] transition-all flex items-center justify-center gap-2 shadow-lg"
             >
               <Send className="w-4 h-4" />
-              <span>Enviar Solicitud de Alquiler ($15.000/mes)</span>
+              <span>Enviar Solicitud de Alquiler</span>
             </button>
           </form>
         ) : (
