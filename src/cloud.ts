@@ -98,6 +98,127 @@ export async function loadConfig(): Promise<any | null> {
   }
 }
 
+// ============================================================
+//  SOLICITUDES (leads / mensajes de contacto)
+// ============================================================
+
+export interface LeadInput {
+  businessName?: string;
+  ownerName?: string;
+  phone?: string;
+  email?: string;
+  rubro?: string;
+  appName?: string;
+  notes?: string;
+}
+
+export interface CloudLead {
+  id: string;
+  business_name: string | null;
+  owner_name: string | null;
+  phone: string | null;
+  email: string | null;
+  rubro: string | null;
+  app_name: string | null;
+  notes: string | null;
+  is_read: boolean;
+  created_at: string;
+}
+
+// Guarda una solicitud nueva (pública, cualquier visitante). Devuelve ok.
+export async function addLead(lead: LeadInput): Promise<{ ok: boolean; error?: string }> {
+  try {
+    const res = await fetch(`${SB_URL}/rest/v1/vitrina_v2_leads`, {
+      method: 'POST',
+      headers: {
+        apikey: SB_KEY,
+        Authorization: `Bearer ${SB_KEY}`,
+        'Content-Type': 'application/json',
+        Prefer: 'return=minimal',
+      },
+      body: JSON.stringify({
+        business_name: lead.businessName || null,
+        owner_name: lead.ownerName || null,
+        phone: lead.phone || null,
+        email: lead.email || null,
+        rubro: lead.rubro || null,
+        app_name: lead.appName || null,
+        notes: lead.notes || null,
+      }),
+    });
+    if (!res.ok) {
+      const t = await res.text();
+      return { ok: false, error: t || 'No se pudo enviar la solicitud.' };
+    }
+    return { ok: true };
+  } catch {
+    return { ok: false, error: 'No se pudo conectar para enviar la solicitud.' };
+  }
+}
+
+// Lista las solicitudes (solo admin logueado). Las más nuevas primero.
+export async function listLeads(): Promise<CloudLead[]> {
+  const s = getSession();
+  if (!s) return [];
+  try {
+    const res = await fetch(
+      `${SB_URL}/rest/v1/vitrina_v2_leads?select=*&order=created_at.desc`,
+      { headers: { apikey: SB_KEY, Authorization: `Bearer ${s.accessToken}` } }
+    );
+    if (!res.ok) return [];
+    const rows = await res.json();
+    return Array.isArray(rows) ? rows : [];
+  } catch {
+    return [];
+  }
+}
+
+// Marca una solicitud como leída / contactada (solo admin).
+export async function markLeadRead(id: string, isRead = true): Promise<boolean> {
+  const s = getSession();
+  if (!s) return false;
+  try {
+    const res = await fetch(
+      `${SB_URL}/rest/v1/vitrina_v2_leads?id=eq.${encodeURIComponent(id)}`,
+      {
+        method: 'PATCH',
+        headers: {
+          apikey: SB_KEY,
+          Authorization: `Bearer ${s.accessToken}`,
+          'Content-Type': 'application/json',
+          Prefer: 'return=minimal',
+        },
+        body: JSON.stringify({ is_read: isRead }),
+      }
+    );
+    return res.ok;
+  } catch {
+    return false;
+  }
+}
+
+// Elimina una solicitud (solo admin).
+export async function deleteLead(id: string): Promise<boolean> {
+  const s = getSession();
+  if (!s) return false;
+  try {
+    const res = await fetch(
+      `${SB_URL}/rest/v1/vitrina_v2_leads?id=eq.${encodeURIComponent(id)}`,
+      {
+        method: 'DELETE',
+        headers: {
+          apikey: SB_KEY,
+          Authorization: `Bearer ${s.accessToken}`,
+          Prefer: 'return=minimal',
+        },
+      }
+    );
+    return res.ok;
+  } catch {
+    return false;
+  }
+}
+
 // Guarda (publica) la configuración. Requiere sesión de admin válida.
 export async function saveConfig(
   data: unknown

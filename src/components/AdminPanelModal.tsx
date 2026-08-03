@@ -38,6 +38,7 @@ import {
   Upload
 } from 'lucide-react';
 import { AppShowcase, AppCategory, SupportTicket, AppRentalLead, PageModel, PricingPlan, DemoTenant } from '../types';
+import { listLeads, markLeadRead, deleteLead, CloudLead } from '../cloud';
 
 interface AdminPanelModalProps {
   isOpen: boolean;
@@ -664,63 +665,93 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
     },
   ]);
 
-  // Mock Rental Leads
-  const [leads, setLeads] = useState<AppRentalLead[]>([
-    {
-      id: 'LD-01',
-      businessName: 'Barbería El Clan',
-      ownerName: 'Marcos Fernández',
-      phone: '+54 9 1144223311',
-      email: 'marcos.clan@gmail.com',
-      rubro: 'barberia',
-      preferredPlan: 'pyme',
-      status: 'Nuevo',
-      createdAt: '31/07/2026 19:15',
-    },
-    {
-      id: 'LD-02',
-      businessName: 'Gourmet Hamburguesas',
-      ownerName: 'Gastón Silva',
-      phone: '+54 9 1122334455',
-      email: 'gaston.burger@gmail.com',
-      rubro: 'gastronomia',
-      preferredPlan: 'micro',
-      status: 'Contactado',
-      createdAt: '31/07/2026 17:40',
-    },
-  ]);
+  // Solicitudes reales (se cargan desde la nube; ya no hay demos hardcodeados)
+  const [leads, setLeads] = useState<AppRentalLead[]>([]);
 
-  // Demo Tenants State (Inquilinos probando Demos en vivo)
-  const [demoTenants, setDemoTenants] = useState<DemoTenant[]>([
-    {
-      id: 'DEMO-101',
-      tenantName: 'Diego Ariel Rasche',
-      businessName: 'Barbería DiRasche & Estilo',
-      email: 'diegoariel21980@gmail.com',
-      phone: '+54 9 11 5544-3322',
-      appId: '1',
-      appName: 'PRUEBA-UNO Barbería DiRasche',
-      plan: 'pyme',
-      status: 'En Prueba',
-      trialDaysLeft: 7,
-      notes: 'Solicitó acceso para probar el agendamiento de turnos y alertas sonoras.',
-      createdAt: '31/07/2026 18:00',
-    },
-    {
-      id: 'DEMO-102',
-      tenantName: 'Carla Silveyra',
-      businessName: 'Claris Boutique & Moda',
-      email: 'carla.boutique@gmail.com',
-      phone: '+54 9 11 6677-8899',
-      appId: '2',
-      appName: 'Boutique & Moda Urbana',
-      plan: 'micro',
-      status: 'En Prueba',
-      trialDaysLeft: 4,
-      notes: 'Inquilino probando catálogo de ropa con envío directo de pedidos a WhatsApp.',
-      createdAt: '30/07/2026 12:30',
-    },
-  ]);
+  // Inquilinos demo: arranca vacío (sin demos hardcodeados)
+  const [demoTenants, setDemoTenants] = useState<DemoTenant[]>([]);
+
+  // ── Solicitudes desde la nube: carga + sondeo + aviso de nuevas ──
+  const seenLeadIdsRef = useRef<Set<string>>(new Set());
+  const leadsLoadedOnceRef = useRef<boolean>(false);
+  const [leadsLoading, setLeadsLoading] = useState<boolean>(false);
+
+  const mapLead = (c: CloudLead): AppRentalLead => {
+    let createdAt = c.created_at;
+    try {
+      createdAt = new Date(c.created_at).toLocaleString('es-AR', {
+        day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit',
+      });
+    } catch { /* dejamos el crudo */ }
+    const notasArr: string[] = [];
+    if (c.app_name) notasArr.push(`App solicitada: ${c.app_name}`);
+    if (c.notes) notasArr.push(c.notes);
+    return {
+      id: c.id,
+      businessName: c.business_name || '(sin nombre)',
+      ownerName: c.owner_name || '',
+      phone: c.phone || '',
+      email: c.email || '',
+      rubro: (c.rubro || 'barberia') as AppCategory,
+      preferredPlan: 'micro',
+      status: c.is_read ? 'Contactado' : 'Nuevo',
+      createdAt,
+      notes: notasArr.join(' · '),
+    };
+  };
+
+  const beepNuevaSolicitud = () => {
+    try {
+      const Ctx = (window as any).AudioContext || (window as any).webkitAudioContext;
+      if (!Ctx) return;
+      const ctx = new Ctx();
+      const osc = ctx.createOscillator();
+      const g = ctx.createGain();
+      osc.connect(g); g.connect(ctx.destination);
+      osc.type = 'sine'; osc.frequency.value = 880; g.gain.value = 0.12;
+      osc.start(); osc.stop(ctx.currentTime + 0.35);
+    } catch { /* noop */ }
+  };
+
+  const cargarSolicitudes = async (avisar: boolean) => {
+    const cloud = await listLeads();
+    const mapped = cloud.map(mapLead);
+    const nuevas = mapped.filter(
+      (m) => m.status === 'Nuevo' && !seenLeadIdsRef.current.has(m.id)
+    );
+    if (avisar && leadsLoadedOnceRef.current && nuevas.length > 0) {
+      beepNuevaSolicitud();
+      try {
+        if ('Notification' in window && Notification.permission === 'granted') {
+          new Notification('🟢 Nueva solicitud en Vitrina v2', {
+            body: `${nuevas.length} solicitud(es) nueva(s). Abrí la pestaña Solicitudes para responder.`,
+          });
+        }
+      } catch { /* noop */ }
+    }
+    mapped.forEach((m) => seenLeadIdsRef.current.add(m.id));
+    leadsLoadedOnceRef.current = true;
+    setLeads(mapped);
+  };
+
+  useEffect(() => {
+    if (!isOpen || !isAuthenticated) return;
+    try {
+      if ('Notification' in window && Notification.permission === 'default') {
+        Notification.requestPermission();
+      }
+    } catch { /* noop */ }
+    setLeadsLoading(true);
+    cargarSolicitudes(false).finally(() => setLeadsLoading(false));
+    const iv = setInterval(() => cargarSolicitudes(true), 20000);
+    const alVolver = () => { if (document.visibilityState === 'visible') cargarSolicitudes(true); };
+    document.addEventListener('visibilitychange', alVolver);
+    return () => {
+      clearInterval(iv);
+      document.removeEventListener('visibilitychange', alVolver);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen, isAuthenticated]);
 
   // Demo Tenant Form State
   const [isAddingDemoTenant, setIsAddingDemoTenant] = useState<boolean>(false);
@@ -2045,14 +2076,18 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
                       </div>
                     ) : (
                       leads.map((ld) => {
-                        const isActive = ld.status === 'Activo';
-                        const isNewLead = ld.status === 'Nuevo' || ld.status === 'Desde Demo' || isActive;
+                        const isNewLead = ld.status === 'Nuevo' || ld.status === 'Desde Demo';
+                        const isActive = false;
 
+                        // Marca la solicitud como contactada (leída) en la nube y
+                        // le saca el resaltado de "nueva".
                         const handleToggleActive = () => {
+                          const marcarLeida = ld.status !== 'Contactado';
+                          markLeadRead(ld.id, marcarLeida);
                           setLeads(
                             leads.map((l) =>
                               l.id === ld.id
-                                ? { ...l, status: l.status === 'Activo' ? 'Nuevo' : 'Activo' }
+                                ? { ...l, status: marcarLeida ? 'Contactado' : 'Nuevo' }
                                 : l
                             )
                           );
@@ -2129,8 +2164,8 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
                               <span className="text-[#C5A059] font-bold">Rubro: </span>
                               <span className="capitalize">{ld.rubro}</span>
                             </div>
-                            <div className="flex items-center gap-2">
-                              <span className="text-[#C5A059] font-bold">Teléfono: </span>
+                            <div className="flex items-center gap-2 flex-wrap">
+                              <span className="text-[#C5A059] font-bold">Contacto: </span>
                               <span>{ld.phone}</span>
                               {ld.phone && (
                                 <a
@@ -2138,9 +2173,18 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="px-2 py-0.5 bg-emerald-600 text-white font-bold text-[10px] hover:bg-emerald-500 rounded-sm"
-                                  title="Enviar WhatsApp"
+                                  title="Responder por WhatsApp"
                                 >
                                   WA
+                                </a>
+                              )}
+                              {ld.email && (
+                                <a
+                                  href={`mailto:${ld.email}`}
+                                  className="px-2 py-0.5 bg-[#C5A059] text-black font-bold text-[10px] hover:bg-[#d4b068] rounded-sm"
+                                  title={`Responder por email a ${ld.email}`}
+                                >
+                                  MAIL
                                 </a>
                               )}
                             </div>
@@ -2157,6 +2201,8 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
                             <button
                               onClick={() => {
                                 if (confirm('¿Eliminar esta solicitud de alquiler?')) {
+                                  deleteLead(ld.id);
+                                  seenLeadIdsRef.current.delete(ld.id);
                                   setLeads(leads.filter((l) => l.id !== ld.id));
                                 }
                               }}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { X, Sparkles, Send, CheckCircle2, Phone, Building2, User } from 'lucide-react';
+import { addLead } from '../cloud';
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -26,6 +27,17 @@ export const ContactModal: React.FC<ContactModalProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // Guardamos la solicitud en la nube (no bloqueante: si falla, igual
+    // mostramos el gracias para no frustrar al visitante).
+    addLead({
+      businessName,
+      ownerName,
+      phone,
+      email,
+      rubro: selectedRubro,
+      appName: defaultAppName,
+      notes,
+    });
     setIsSubmitted(true);
   };
 
@@ -93,6 +105,19 @@ export const ContactModal: React.FC<ContactModalProps> = ({
                   placeholder="Ej. +54 9 11 3366-5588"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
+                  className="w-full bg-[#0F1012] border border-white/10 px-3.5 py-2.5 text-xs text-[#F9F6F0] focus:outline-none focus:border-[#C5A059]"
+                />
+              </div>
+
+              <div>
+                <label className="text-xs text-[#C5A059] block mb-1 uppercase tracking-wider font-semibold">
+                  Email (opcional, para responderte):
+                </label>
+                <input
+                  type="email"
+                  placeholder="Ej. tunegocio@gmail.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="w-full bg-[#0F1012] border border-white/10 px-3.5 py-2.5 text-xs text-[#F9F6F0] focus:outline-none focus:border-[#C5A059]"
                 />
               </div>

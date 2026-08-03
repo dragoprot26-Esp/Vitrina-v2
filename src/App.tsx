@@ -46,7 +46,15 @@ export default function App() {
     if (getSession()) setIsAdminUnlocked(true);
     loadConfig().then((data) => {
       if (!data) return;
-      if (Array.isArray(data.apps)) setApps(data.apps);
+      if (Array.isArray(data.apps)) {
+        // Reconciliación anti-demos: el catálogo real (INITIAL_APPS) manda. De la
+        // nube solo conservamos las apps que existen en el catálogo (con las
+        // ediciones/visibilidad/precio del panel). Cualquier app "fantasma" que
+        // haya quedado publicada de versiones viejas (demos) se descarta sola.
+        const realIds = new Set(INITIAL_APPS.map((a) => a.id));
+        const limpio = data.apps.filter((a: AppShowcase) => realIds.has(a.id));
+        setApps(limpio.length ? limpio : INITIAL_APPS);
+      }
       if (Array.isArray(data.pricingPlans)) setPricingPlans(data.pricingPlans);
       if (data.currentModel) setCurrentModel(data.currentModel);
     });
