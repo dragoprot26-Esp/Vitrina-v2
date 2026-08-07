@@ -75,7 +75,13 @@ export const PricingCalculator: React.FC<PricingCalculatorProps> = ({
                       {plan.currency}{plan.period}
                     </span>
                   </div>
-                  <p className="text-[11px] text-[#F9F6F0]/50 mt-1">
+                  <div className="mt-2.5 flex items-start gap-1.5 bg-[#C5A059]/10 border border-[#C5A059]/30 px-2.5 py-1.5 rounded">
+                    <span className="text-[#C5A059] text-xs leading-none mt-0.5">✦</span>
+                    <p className="text-[11px] text-[#F9F6F0]/85 leading-snug">
+                      <strong className="text-[#C5A059]">Precio de lanzamiento</strong> por los primeros 12 meses. A partir del mes 13: <strong className="text-[#F9F6F0]">${(plan.price * 2).toLocaleString('es-AR')}{plan.period}</strong>.
+                    </p>
+                  </div>
+                  <p className="text-[11px] text-[#F9F6F0]/50 mt-1.5">
                     {plan.priceNote || '* Llave en mano en 24hs. Cancelás cuando quieras.'}
                   </p>
                 </div>
