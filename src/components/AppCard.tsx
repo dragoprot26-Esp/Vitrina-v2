@@ -63,10 +63,10 @@ export const AppCard: React.FC<AppCardProps> = ({
               {app.badgeText}
             </span>
             <div className="text-right">
-              <span className="text-2xl font-serif font-bold text-[#C5A059]">
-                ${app.monthlyPrice.toLocaleString('es-AR')}
+              <span className="text-lg sm:text-xl font-serif font-bold text-[#C5A059]">
+                Elegí tu Plan
               </span>
-              <span className="text-xs text-[#F9F6F0]/60 font-sans"> {app.currency}{t.monthlyPrice}</span>
+              <span className="block text-xs text-[#F9F6F0]/60 font-sans">{app.currency}{t.monthlyPrice}</span>
             </div>
           </div>
 
