@@ -54,7 +54,15 @@ export const AppCard: React.FC<AppCardProps> = ({
   };
 
   return (
-    <div className="bg-[#1A1C20] border border-white/10 hover:border-[#C5A059]/60 transition-all duration-300 shadow-2xl flex flex-col justify-between group">
+    <div className="relative overflow-hidden bg-[#1A1C20] border border-white/10 hover:border-[#C5A059]/60 transition-all duration-300 shadow-2xl flex flex-col justify-between group">
+      {/* Cinta "MUY PRONTO" (se saca poniendo comingSoon: false en la app) */}
+      {app.comingSoon && (
+        <div className="absolute top-0 right-0 z-30 w-40 h-40 overflow-hidden pointer-events-none">
+          <div className="absolute top-[26px] right-[-46px] rotate-45 w-[200px] text-center bg-gradient-to-r from-[#C5A059] to-[#e0c079] text-black text-[11px] font-black uppercase tracking-[0.18em] py-1.5 shadow-lg border-y border-black/20">
+            {language === 'es' ? 'Muy Pronto' : 'Coming Soon'}
+          </div>
+        </div>
+      )}
       {/* Top Banner / Card Header */}
       <div>
         <div className="p-6 pb-4 border-b border-white/10">
