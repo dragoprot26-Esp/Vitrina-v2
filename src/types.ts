@@ -75,6 +75,7 @@ export interface AppShowcase {
   };
   isActive: boolean;
   featured: boolean;
+  comingSoon?: boolean; // Muestra la cinta "MUY PRONTO" hasta terminar de probarla.
 }
 
 export interface SupportTicket {
