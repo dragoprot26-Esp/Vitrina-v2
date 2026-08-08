@@ -47,13 +47,16 @@ export default function App() {
     loadConfig().then((data) => {
       if (!data) return;
       if (Array.isArray(data.apps)) {
-        // Reconciliación anti-demos: el catálogo real (INITIAL_APPS) manda. De la
-        // nube solo conservamos las apps que existen en el catálogo (con las
-        // ediciones/visibilidad/precio del panel). Cualquier app "fantasma" que
-        // haya quedado publicada de versiones viejas (demos) se descarta sola.
-        const realIds = new Set(INITIAL_APPS.map((a) => a.id));
-        const limpio = data.apps.filter((a: AppShowcase) => realIds.has(a.id));
-        setApps(limpio.length ? limpio : INITIAL_APPS);
+        // Reconciliación anti-demos + apps nuevas: el catálogo real (INITIAL_APPS)
+        // manda el orden y garantiza que TODA app del molde aparezca, aunque la
+        // config publicada sea vieja y no la tenga. De la nube tomamos la versión
+        // de cada app si existe (conserva ediciones/visibilidad/precio del panel);
+        // las apps "fantasma" (demos de versiones viejas) se descartan solas.
+        const nubePorId = new Map(
+          (data.apps as AppShowcase[]).map((a) => [a.id, a])
+        );
+        const merged = INITIAL_APPS.map((a) => nubePorId.get(a.id) || a);
+        setApps(merged);
       }
       if (Array.isArray(data.pricingPlans)) setPricingPlans(data.pricingPlans);
       if (data.currentModel) setCurrentModel(data.currentModel);
