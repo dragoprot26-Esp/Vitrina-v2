@@ -1,7 +1,56 @@
 import { AppShowcase, PricingPlan } from '../types';
 
 export const INITIAL_APPS: AppShowcase[] = [
-  
+
+  {
+    id: 'aromazen',
+    name: 'AromaZen',
+    tagline: 'Tienda de saumerios, aromatizantes y bienestar holístico. Catálogo místico, música de fondo, reseñas y consultas — con retiro y cobro en tu negocio.',
+    category: 'masajes',
+    categoryLabel: 'Aromaterapia & Bienestar',
+    iconName: 'Flame',
+    monthlyPrice: 5000,
+    currency: 'ARS',
+    badgeText: 'NUEVA',
+    publicViewTitle: 'AromaZen — Tienda Oficial',
+    publicViewDescription: 'Vidriera elegante de saumerios, resinas y aromatizantes. El cliente explora por categoría, lee tus métodos de limpieza espiritual, escucha música de fondo y arma su pedido desde el celular.',
+    adminViewTitle: 'Panel de AromaZen (Dueño / Colaboradores)',
+    adminViewDescription: 'Cargá tu catálogo con fotos y stock, recibí los encargos en vivo con código de retiro, moderá reseñas y respondé consultas — todo configurable desde tu panel.',
+    keyFeatures: [
+      'Catálogo por categorías (saumerios, resinas, aromatizantes)',
+      'Métodos de limpieza espiritual para el cliente',
+      'Encargos en vivo con código de retiro',
+      'Reseñas y consultas moderadas',
+      'Música de fondo e instalable como App (PWA)'
+    ],
+    bannerUrl: '/screenshots/aromazen/banner.jpg',
+    isActive: true,
+    featured: true,
+    screenshots: [
+      { id: 'aroma-1', title: 'Página Pública — Vidriera Mística', type: 'public', url: '/screenshots/aromazen/pub1.jpg', description: 'Catálogo de saumerios y aromatizantes con foto, precio y detalle. El cliente arma su pedido desde el celular.', highlights: ['Estilo místico', 'Por categorías', 'Sin comisiones'] },
+      { id: 'aroma-2', title: 'Impecable en el Celular (PWA)', type: 'public', url: '/screenshots/aromazen/pub2.jpg', description: 'Se ve perfecto en el móvil y se instala como app. Entran escaneando tu QR.', highlights: ['Instalable', 'QR del local', 'Rápida'] },
+      { id: 'aroma-3', title: 'Panel — Gestión de Productos', type: 'admin', url: '/screenshots/aromazen/admin1.jpg', description: 'Cargá y editá productos con fotos, precio y stock en un clic. Cambios al instante.', highlights: ['Fotos y stock', 'Precio', 'Cambios al instante'] }
+    ],
+    demoData: {
+      businessName: 'AromaZen Store',
+      phone: '+54 9 11 5829-4010',
+      location: 'CABA, Buenos Aires',
+      servicesOrProductsName: 'Productos',
+      items: [
+        { id: 'aroma-p1', title: 'Saumerio Palo Santo & Lavanda', subtitle: 'Varillas gruesas enrolladas a mano con madera sagrada de Palo Santo orgánico.', price: '$1.850', durationOrStock: 'Disponible', imageUrl: 'https://images.unsplash.com/photo-1602928321679-560bb453f190?auto=format&fit=crop&w=400&q=80', badge: 'Destacado', category: 'Saumerios' },
+        { id: 'aroma-p2', title: 'Aromatizante Ambiental Sándalo Hindú', subtitle: 'Fragancia concentrada para textiles y ambientes con aceite esencial puro.', price: '$3.400', durationOrStock: 'Disponible', imageUrl: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=400&q=80', category: 'Aromatizantes' },
+        { id: 'aroma-p3', title: 'Resina Copal Blanco en Lágrimas', subtitle: 'Resina pura para sahumar con carbón. 100g.', price: '$2.200', durationOrStock: 'Últimas unidades', imageUrl: 'https://images.unsplash.com/photo-1611072172377-0cabc3addb30?auto=format&fit=crop&w=400&q=80', badge: 'Promo', category: 'Resinas & Carbones' }
+      ],
+      collaborators: [
+        { id: 'aroma-c1', name: 'Luna', role: 'Atención', email: 'ventas.aromazen@gmail.com', isAdmin: false, avatarUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80', activeHours: '6 hrs' }
+      ],
+      sampleOrdersOrTurns: [
+        { id: 'aroma-o1', code: 'AZ-4471', customer: 'Camila', phone: '1133445566', detail: 'Saumerio Palo Santo & Lavanda x3', status: 'Pendiente', total: '$5.550', time: '10:30 AM' },
+        { id: 'aroma-o2', code: 'AZ-2210', customer: 'Tomás', phone: '1122334455', detail: 'Aromatizante Sándalo Hindú', status: 'Entregado', total: '$3.400', time: '12:15 PM' }
+      ]
+    }
+  },
+
   {
     id: 'brillos',
     name: 'Brillos Store Neón',
