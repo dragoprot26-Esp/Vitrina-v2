@@ -3,6 +3,56 @@ import { AppShowcase, PricingPlan } from '../types';
 export const INITIAL_APPS: AppShowcase[] = [
 
   {
+    id: 'tapper',
+    name: 'Tapper',
+    tagline: 'Tienda de tapers y envases con catálogo por capacidad y material, carrito y código de retiro. Retiro o envío, y el cobro en tu negocio.',
+    category: 'almacen',
+    categoryLabel: 'Bazar & Envases',
+    iconName: 'Package',
+    monthlyPrice: 5000,
+    currency: 'ARS',
+    badgeText: 'NUEVA',
+    publicViewTitle: 'Tapper — Tienda Oficial',
+    publicViewDescription: 'Catálogo de tapers y envases con foto, capacidad, material y stock. El cliente arma su pedido desde el celular y elige retiro o envío.',
+    adminViewTitle: 'Panel de Tapper (Dueño / Colaboradores)',
+    adminViewDescription: 'Cargá productos con stock y features, gestioná los encargos con código de retiro, moderá reseñas y consultas, y configurá envío, temas y música.',
+    keyFeatures: [
+      'Catálogo por capacidad, material y features',
+      'Carrito y encargo con código de retiro',
+      'Retiro o envío configurable',
+      'Reseñas y consultas moderadas',
+      'Instalable como App (PWA) y música de fondo'
+    ],
+    bannerUrl: '/screenshots/tapper/banner.jpg',
+    isActive: true,
+    featured: true,
+    comingSoon: true,
+    screenshots: [
+      { id: 'tapp-1', title: 'Página Pública — Catálogo', type: 'public', url: '/screenshots/tapper/pub1.jpg', description: 'Tapers y envases con foto, capacidad y precio. El cliente suma al carrito desde el celular.', highlights: ['Por categorías', 'Capacidad y material', 'Sin comisiones'] },
+      { id: 'tapp-2', title: 'Impecable en el Celular (PWA)', type: 'public', url: '/screenshots/tapper/pub2.jpg', description: 'Se ve perfecto en el móvil y se instala como app. Entran escaneando tu QR.', highlights: ['Instalable', 'QR del local', 'Rápida'] },
+      { id: 'tapp-3', title: 'Panel — Encargos', type: 'admin', url: '/screenshots/tapper/admin1.jpg', description: 'Cada encargo entra con los datos del cliente y su código de retiro, con estados.', highlights: ['Datos del cliente', 'Código de retiro', 'Estados'] }
+    ],
+    demoData: {
+      businessName: 'Tapper Store',
+      phone: '+54 9 11 5829-4010',
+      location: 'CABA, Buenos Aires',
+      servicesOrProductsName: 'Productos',
+      items: [
+        { id: 'tapp-p1', title: 'Set de Tapers Herméticos x3', subtitle: 'Plástico libre de BPA. Apto microondas y freezer.', price: '$8.900', durationOrStock: 'Disponible', imageUrl: 'https://images.unsplash.com/photo-1584990347449-a2d4c2c9fd9c?auto=format&fit=crop&w=400&q=80', badge: 'Más vendido', category: 'Tapers' },
+        { id: 'tapp-p2', title: 'Botella de Vidrio Templado 1L', subtitle: 'Con tapa hermética y funda de silicona.', price: '$6.500', durationOrStock: 'Disponible', imageUrl: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=400&q=80', category: 'Botellas' },
+        { id: 'tapp-p3', title: 'Contenedor Organizador 2.5L', subtitle: 'Cierre a presión, apilable.', price: '$4.200', durationOrStock: 'Últimas unidades', imageUrl: 'https://images.unsplash.com/photo-1631733515809-8ed3e0d0c3a7?auto=format&fit=crop&w=400&q=80', badge: 'Oferta', category: 'Organización' }
+      ],
+      collaborators: [
+        { id: 'tapp-c1', name: 'Vale', role: 'Ventas', email: 'ventas.tapper@gmail.com', isAdmin: false, avatarUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80', activeHours: '8 hrs' }
+      ],
+      sampleOrdersOrTurns: [
+        { id: 'tapp-o1', code: 'TPR-4471', customer: 'Rocío', phone: '1133445566', detail: 'Set de Tapers Herméticos x3', status: 'Pendiente', total: '$8.900', time: '10:30 AM' },
+        { id: 'tapp-o2', code: 'TPR-2210', customer: 'Diego', phone: '1122334455', detail: 'Botella de Vidrio Templado 1L', status: 'Entregado', total: '$6.500', time: '12:15 PM' }
+      ]
+    }
+  },
+
+  {
     id: 'aromazen',
     name: 'AromaZen',
     tagline: 'Tienda de saumerios, aromatizantes y bienestar holístico. Catálogo místico, música de fondo, reseñas y consultas — con retiro y cobro en tu negocio.',
