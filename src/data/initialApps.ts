@@ -2343,7 +2343,59 @@ export const INITIAL_APPS: AppShowcase[] = [
                   }
             ]
       }
-}
+},
+
+  {
+    id: 'teleeleccion',
+    name: 'Tienda Elección',
+    tagline: 'Tienda multiuso adaptable a cualquier rubro: catálogo con fotos, talles y variantes, carrito y pedidos con código de retiro. 3 temas de diseño, música y el cobro siempre en tu negocio.',
+    category: 'almacen',
+    categoryLabel: 'Multirubro & Tienda',
+    iconName: 'ShoppingBag',
+    monthlyPrice: 5000,
+    currency: 'ARS',
+    badgeText: 'NUEVA',
+    publicViewTitle: 'Tienda Elección — Tienda Oficial',
+    publicViewDescription: 'Catálogo multiuso con fotos, categorías y buscador. El cliente arma su pedido desde el celular, elige retiro o envío y recibe su código de retiro. Sin registrarse ni instalar nada.',
+    adminViewTitle: 'Panel de Tienda Elección (Dueño / Colaboradores)',
+    adminViewDescription: 'Cargá productos con fotos, precio, categoría y talles en segundos. Gestioná encargos con código de retiro y estados, moderá reseñas y consultas, mirá métricas en el dashboard y personalizá tema, música y datos del local.',
+    keyFeatures: [
+      'Se adapta a cualquier rubro (ropa, bazar, accesorios, regalería y más)',
+      'Catálogo con fotos, talles/variantes, categorías y buscador',
+      'Carrito y encargo con código de retiro · retiro o envío',
+      'Reseñas y consultas de clientes moderadas desde el panel',
+      '3 temas de diseño, música de fondo, PWA instalable e ingreso con huella/Face ID'
+    ],
+    bannerUrl: '/screenshots/teleeleccion/banner.jpg',
+    isActive: true,
+    featured: true,
+    comingSoon: false,
+    screenshots: [
+      { id: 'tele-1', title: 'Página Pública — Catálogo', type: 'public', url: '/screenshots/teleeleccion/pub1.jpg', description: 'Productos con fotos, talles y precio, ordenados por categorías. El cliente suma al carrito desde el celular.', highlights: ['Por categorías', 'Talles y variantes', 'Sin comisiones'] },
+      { id: 'tele-2', title: 'Canasto y Código de Retiro', type: 'public', url: '/screenshots/teleeleccion/pub2.jpg', description: 'El cliente confirma su pedido y recibe un código de retiro para pasar por el local. Impecable en el móvil e instalable como app.', highlights: ['Código de retiro', 'Retiro o envío', 'Instalable (PWA)'] },
+      { id: 'tele-3', title: 'Panel — Encargos', type: 'admin', url: '/screenshots/teleeleccion/admin1.jpg', description: 'Cada encargo entra al panel con los datos del cliente, el código de retiro y su estado (pendiente / entregado).', highlights: ['Datos del cliente', 'Código de retiro', 'Estados'] },
+      { id: 'tele-4', title: 'Panel — Dashboard', type: 'admin', url: '/screenshots/teleeleccion/admin2.jpg', description: 'Métricas de ventas, productos y pedidos de un vistazo para tomar decisiones.', highlights: ['Ventas', 'Productos', 'Pedidos'] }
+    ],
+    demoData: {
+      businessName: 'Tienda Multiuso Libre Elección',
+      phone: '+54 9 11 4567-8899',
+      location: 'CABA, Buenos Aires',
+      servicesOrProductsName: 'Productos',
+      items: [
+        { id: 'tele-p1', title: 'Chaqueta Urbana Premium', subtitle: 'Diseño moderno, abrigo ligero. Talles S a XL.', price: '$45.000', durationOrStock: 'Disponible', imageUrl: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=400&q=80', badge: 'Más vendido', category: 'Ropa & Moda' },
+        { id: 'tele-p2', title: 'Zapatillas Deportivas Fit-Lite', subtitle: 'Ultra livianas, suela antideslizante. Talles 38 a 42.', price: '$38.900', durationOrStock: 'Disponible', imageUrl: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=400&q=80', category: 'Calzados' },
+        { id: 'tele-p3', title: 'Reloj Cronógrafo Elegante', subtitle: 'Correa de malla metálica, resistente a salpicaduras.', price: '$29.500', durationOrStock: 'Últimas unidades', imageUrl: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=400&q=80', badge: 'Oferta', category: 'Accesorios' },
+        { id: 'tele-p4', title: 'Juego de Vasos de Cristal x6', subtitle: 'Cristal labrado de alta resistencia.', price: '$18.200', durationOrStock: 'Disponible', imageUrl: 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=400&q=80', category: 'Bazar & Hogar' }
+      ],
+      collaborators: [
+        { id: 'tele-c1', name: 'Belén', role: 'Ventas', email: 'ventas.eleccion@gmail.com', isAdmin: false, avatarUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80', activeHours: '6 hrs' }
+      ],
+      sampleOrdersOrTurns: [
+        { id: 'tele-o1', code: 'RET-7468', customer: 'Juan', phone: '1133225544', detail: 'Zapatillas Deportivas Fit-Lite (T. 40)', status: 'Pendiente', total: '$38.900', time: '10:30 AM' },
+        { id: 'tele-o2', code: 'RET-8821', customer: 'Carla', phone: '1144332211', detail: 'Chaqueta Urbana Premium (T. M)', status: 'Entregado', total: '$45.000', time: '12:15 PM' }
+      ]
+    }
+  }
 ];
 
 export const PRICING_PLANS: PricingPlan[] = [
