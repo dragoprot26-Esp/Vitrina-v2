@@ -27,6 +27,8 @@ export const INITIAL_APPS: AppShowcase[] = [
     isActive: true,
     featured: true,
     comingSoon: true,
+    // Página pública REAL de un inquilino de prueba (demo interactiva).
+    demoUrl: 'https://tapper-store.vercel.app/?codigo=TAPP-PREM-2026-JI74',
     screenshots: [
       { id: 'tapp-1', title: 'Página Pública — Catálogo', type: 'public', url: '/screenshots/tapper/pub1.jpg', description: 'Tapers y envases con foto, capacidad y precio. El cliente suma al carrito desde el celular.', highlights: ['Por categorías', 'Capacidad y material', 'Sin comisiones'] },
       { id: 'tapp-2', title: 'Impecable en el Celular (PWA)', type: 'public', url: '/screenshots/tapper/pub2.jpg', description: 'Se ve perfecto en el móvil y se instala como app. Entran escaneando tu QR.', highlights: ['Instalable', 'QR del local', 'Rápida'] },
