@@ -76,6 +76,7 @@ export interface AppShowcase {
   isActive: boolean;
   featured: boolean;
   comingSoon?: boolean; // Muestra la cinta "MUY PRONTO" hasta terminar de probarla.
+  demoUrl?: string; // Página pública REAL de un inquilino de prueba (?codigo=). Si está, muestra el botón "Ver cómo lo ve el cliente".
 }
 
 export interface SupportTicket {
