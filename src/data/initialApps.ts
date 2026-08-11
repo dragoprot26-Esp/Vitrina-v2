@@ -2395,6 +2395,58 @@ export const INITIAL_APPS: AppShowcase[] = [
         { id: 'tele-o2', code: 'RET-8821', customer: 'Carla', phone: '1144332211', detail: 'Chaqueta Urbana Premium (T. M)', status: 'Entregado', total: '$45.000', time: '12:15 PM' }
       ]
     }
+  },
+
+  {
+    id: 'nightclub',
+    name: 'Tragos Night Club',
+    tagline: 'Bar de tragos y cócteles nocturnos con carta digital estilo neón: el cliente arma su pedido desde el celular y retira en barra. El cobro, siempre en tu negocio.',
+    category: 'gastronomia',
+    categoryLabel: 'Bar & Cócteles',
+    iconName: 'Flame',
+    monthlyPrice: 5000,
+    currency: 'ARS',
+    badgeText: 'NUEVA',
+    publicViewTitle: 'Tragos Night Club — Carta Oficial',
+    publicViewDescription: 'Carta de tragos y cócteles con fotos y efectos neón láser, categorías (cócteles, tragos de autor, cervezas, promos) y buscador. El cliente pide desde el celular con retiro en barra o delivery.',
+    adminViewTitle: 'Panel de Tragos Night Club (Dueño / Colaboradores)',
+    adminViewDescription: 'Cargá tragos con fotos, precio, categoría y campos (volumen, graduación). Gestioná los pedidos con código de retiro y estados, moderá reseñas y consultas, música de fondo y temas neón. Ingreso con huella/Face ID.',
+    keyFeatures: [
+      'Carta digital con fotos y efectos neón láser',
+      'Carrito y pedidos con código de retiro en barra',
+      'Retiro o delivery configurable',
+      'Reseñas y consultas de clientes moderadas',
+      'Música de fondo, temas de diseño, PWA instalable e ingreso con huella',
+    ],
+    bannerUrl: '/screenshots/nightclub/banner.jpg',
+    isActive: true,
+    featured: true,
+    comingSoon: false,
+    screenshots: [
+      { id: 'night-1', title: 'Página Pública — Carta Neón', type: 'public', url: '/screenshots/nightclub/banner.jpg', description: 'Carta de tragos con fotos, precio y categorías, sobre un fondo neón láser. El cliente suma al carrito desde el celular.', highlights: ['Estilo neón', 'Por categorías', 'Sin comisiones'] },
+      { id: 'night-2', title: 'Catálogo e Instalable (PWA)', type: 'public', url: '/screenshots/nightclub/pub1.jpg', description: 'Se ve impecable en el móvil y se instala como app. Los clientes entran escaneando el QR del local.', highlights: ['Instalable', 'QR del bar', 'Buscador'] },
+      { id: 'night-3', title: 'Panel — Carga de Tragos', type: 'admin', url: '/screenshots/nightclub/admin1.jpg', description: 'Cargás tragos con fotos, precio, categoría y campos como volumen o graduación, en segundos.', highlights: ['Fotos', 'Campos personalizados', 'Sync al instante'] },
+      { id: 'night-4', title: 'Panel — Pedidos', type: 'admin', url: '/screenshots/nightclub/admin2.jpg', description: 'Cada pedido entra con los datos del cliente, su código de retiro y estado (pendiente / en preparación / completado).', highlights: ['Datos del cliente', 'Código de retiro', 'Estados'] },
+    ],
+    demoData: {
+      businessName: 'Night Tragos Bar & Lounge',
+      phone: '+54 9 11 5544-3322',
+      location: 'CABA, Buenos Aires',
+      servicesOrProductsName: 'Tragos',
+      items: [
+        { id: 'night-p1', title: 'Mojito Neon Electric', subtitle: 'Ron blanco, menta, lima y soda con toque neón.', price: '$4.500', durationOrStock: 'Disponible', imageUrl: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=400&q=80', badge: 'Más pedido', category: 'Cócteles' },
+        { id: 'night-p2', title: 'Cyber Gin Tonic', subtitle: 'Gin artesanal, tónica premium, pepino y humo de romero.', price: '$5.200', durationOrStock: 'Disponible', imageUrl: 'https://images.unsplash.com/photo-1527661591475-527312dd65f5?auto=format&fit=crop&w=400&q=80', category: 'Tragos de Autor' },
+        { id: 'night-p3', title: 'Fernet Branca XL (1 Litro)', subtitle: 'Clásico Fernet con Coca bien fría y hielo de roca.', price: '$6.500', durationOrStock: 'Disponible', imageUrl: 'https://images.unsplash.com/photo-1582106245687-cbb466a9f07f?auto=format&fit=crop&w=400&q=80', badge: 'Promo', category: 'Promociones' },
+        { id: 'night-p4', title: 'Cerveza Patagonia IPA', subtitle: 'Notas a lúpulo y cítricos, amargor equilibrado.', price: '$3.200', durationOrStock: 'Disponible', imageUrl: 'https://images.unsplash.com/photo-1608270586620-248524c67de9?auto=format&fit=crop&w=400&q=80', category: 'Cervezas' },
+      ],
+      collaborators: [
+        { id: 'night-c1', name: 'Nico', role: 'Barra', email: 'barra.nightclub@gmail.com', isAdmin: false, avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80', activeHours: '8 hrs' },
+      ],
+      sampleOrdersOrTurns: [
+        { id: 'night-o1', code: '#TRAGO-8492', customer: 'Lucas', phone: '1133445566', detail: 'Mojito Neon Electric x2', status: 'Pendiente', total: '$9.000', time: '11:30 PM' },
+        { id: 'night-o2', code: '#TRAGO-2210', customer: 'Vale', phone: '1122334455', detail: 'Cyber Gin Tonic', status: 'Entregado', total: '$5.200', time: '12:05 AM' },
+      ],
+    },
   }
 ];
 
