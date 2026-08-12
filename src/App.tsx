@@ -55,7 +55,13 @@ export default function App() {
         const nubePorId = new Map(
           (data.apps as AppShowcase[]).map((a) => [a.id, a])
         );
-        const merged = INITIAL_APPS.map((a) => nubePorId.get(a.id) || a);
+        // El demoUrl es propiedad del CÓDIGO (no se edita en el panel): si la
+        // config publicada es vieja y no lo trae, igual lo tomamos de INITIAL_APPS
+        // para que el botón "Ver cómo lo ve el cliente" siempre aparezca.
+        const merged = INITIAL_APPS.map((a) => {
+          const nube = nubePorId.get(a.id);
+          return nube ? { ...nube, demoUrl: a.demoUrl } : a;
+        });
         setApps(merged);
       }
       if (Array.isArray(data.pricingPlans)) setPricingPlans(data.pricingPlans);
