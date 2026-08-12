@@ -79,6 +79,8 @@ export const INITIAL_APPS: AppShowcase[] = [
     isActive: true,
     featured: true,
     comingSoon: true,
+    // Página pública REAL de un inquilino de prueba (demo interactiva).
+    demoUrl: 'https://aromazen-pwa-multitenant.vercel.app/?codigo=AROMA-PREM-2026-0T36',
     screenshots: [
       { id: 'aroma-1', title: 'Página Pública — Vidriera Mística', type: 'public', url: '/screenshots/aromazen/pub1.jpg', description: 'Catálogo de saumerios y aromatizantes con foto, precio y detalle. El cliente arma su pedido desde el celular.', highlights: ['Estilo místico', 'Por categorías', 'Sin comisiones'] },
       { id: 'aroma-2', title: 'Impecable en el Celular (PWA)', type: 'public', url: '/screenshots/aromazen/pub2.jpg', description: 'Se ve perfecto en el móvil y se instala como app. Entran escaneando tu QR.', highlights: ['Instalable', 'QR del local', 'Rápida'] },
