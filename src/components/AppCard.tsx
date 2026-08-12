@@ -207,26 +207,27 @@ export const AppCard: React.FC<AppCardProps> = ({
 
       {/* Card Footer Buttons */}
       <div className="p-6 pt-0 space-y-2.5">
-        {/* Demo pública REAL: abre la página del inquilino de prueba en una pestaña nueva */}
-        {app.demoUrl && (
+        {app.demoUrl ? (
+          /* Demo pública REAL (abre la página del inquilino de prueba). Estilo dorado de la página. */
           <a
             href={app.demoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full py-3 px-4 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition-all flex items-center justify-center gap-2 uppercase tracking-widest shadow-md"
+            className="w-full py-3 px-4 bg-[#C5A059] text-black font-bold text-xs hover:bg-[#d4b068] transition-all flex items-center justify-center gap-2 uppercase tracking-widest shadow-md"
           >
             <Eye className="w-4 h-4" />
             <span>{language === 'es' ? 'Ver cómo lo ve el cliente' : 'See the customer view'}</span>
           </a>
+        ) : (
+          /* Apps sin demo en vivo: demo interna con capturas. */
+          <button
+            onClick={() => onOpenDemo(app, activeViewTab)}
+            className="w-full py-3 px-4 bg-[#C5A059] text-black font-bold text-xs hover:bg-[#d4b068] transition-all flex items-center justify-center gap-2 uppercase tracking-widest shadow-md"
+          >
+            <Play className="w-4 h-4 fill-black" />
+            <span>{language === 'es' ? 'SOLICITAR DEMO' : 'REQUEST DEMO'}</span>
+          </button>
         )}
-
-        <button
-          onClick={() => onOpenDemo(app, activeViewTab)}
-          className="w-full py-3 px-4 bg-[#C5A059] text-black font-bold text-xs hover:bg-[#d4b068] transition-all flex items-center justify-center gap-2 uppercase tracking-widest shadow-md"
-        >
-          <Play className="w-4 h-4 fill-black" />
-          <span>{language === 'es' ? 'SOLICITAR DEMO' : 'REQUEST DEMO'}</span>
-        </button>
 
         <button
           onClick={() => onOpenContactForApp(app)}
