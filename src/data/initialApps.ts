@@ -3,6 +3,65 @@ import { AppShowcase, PricingPlan } from '../types';
 export const INITIAL_APPS: AppShowcase[] = [
 
   {
+    id: 'barberiatradicional',
+    name: 'Barbería Tradicional & Moderna',
+    tagline: 'La barbería de siempre, con la agenda del celular. El cliente elige corte, barbero y horario desde tu QR, y el turno te entra al panel en el momento. Sin comisiones.',
+    category: 'barberia',
+    categoryLabel: 'Barberías & Peluquerías',
+    iconName: 'Scissors',
+    monthlyPrice: 5000,
+    currency: 'ARS',
+    badgeText: 'NUEVA',
+    publicViewTitle: 'Tu barbería, abierta las 24 horas',
+    publicViewDescription: 'Una página con el nombre, las fotos y los precios de TU local. El cliente entra escaneando el QR del mostrador, mira los servicios con foto, elige su barbero y su horario, y reserva en tres toques. Sin bajar ninguna app y sin crearse ninguna cuenta.',
+    adminViewTitle: 'El panel del dueño (y de cada barbero)',
+    adminViewDescription: 'La agenda del día en vivo: cada turno entra con el nombre y el teléfono del cliente, y WhatsApp a un toque. Cargás cortes y productos con foto y precio, cada barbero tiene su propio usuario, y el caja del día te sale en planilla.',
+    keyFeatures: [
+      'Reserva online por barbero, servicio y horario',
+      'El turno suena en tu celular apenas entra',
+      'Cada barbero con su usuario y su propia agenda',
+      'Catálogo de cortes y venta de productos',
+      'Cierre de caja del día en planilla',
+      'Se instala como app en el celular (PWA)',
+      'Ingreso con huella o Face ID',
+      'Sin comisiones: cobrás vos, en tu local'
+    ],
+    bannerUrl: '/screenshots/barberiatradicional/banner.jpg',
+    isActive: true,
+    featured: true,
+    // Página pública REAL de un inquilino de prueba (demo interactiva).
+    demoUrl: 'https://barberia-tradicional-b.vercel.app/?codigo=DONC-PREM-2026-Q3GR',
+    screenshots: [
+      { id: 'bdc-1', title: 'Tu página, con tu nombre', type: 'public', url: '/screenshots/barberiatradicional/pub1.jpg', description: 'La portada lleva el nombre, la foto y los textos de TU barbería. Todo se cambia desde el panel, sin llamar a nadie.', highlights: ['Tu nombre y tu logo', 'Reservá en un toque', 'Sin comisiones'] },
+      { id: 'bdc-2', title: 'Los cortes, como en la vidriera', type: 'public', url: '/screenshots/barberiatradicional/pub2.jpg', description: 'Cada servicio con sus fotos, el precio, la duración y lo que incluye. El cliente sabe qué va a pagar antes de sentarse.', highlights: ['Hasta 5 fotos por corte', 'Precio y duración', 'Qué incluye'] },
+      { id: 'bdc-3', title: 'Impecable en el celular', type: 'public', url: '/screenshots/barberiatradicional/pub3.jpg', description: 'Se ve perfecta en el teléfono y se instala como app. Tus clientes entran escaneando el QR del mostrador.', highlights: ['Se instala como app', 'Entra por tu QR', 'Rápida'] },
+      { id: 'bdc-4', title: 'Reservar, en tres toques', type: 'public', url: '/screenshots/barberiatradicional/pub4.jpg', description: 'Elige el corte, el barbero y el horario. Sin descargar nada, sin registrarse y sin dar una tarjeta.', highlights: ['Sin registro', 'Elige su barbero', 'Confirma por WhatsApp'] },
+      { id: 'bdc-5', title: 'Panel — La agenda del día', type: 'admin', url: '/screenshots/barberiatradicional/admin1.jpg', description: 'Cada turno entra con el nombre y el teléfono del cliente, el servicio y el barbero asignado. Le escribís por WhatsApp desde el mismo botón.', highlights: ['Turnos en vivo', 'WhatsApp a un toque', 'Filtro por barbero'] },
+      { id: 'bdc-6', title: 'Panel — Cortes y precios', type: 'admin', url: '/screenshots/barberiatradicional/admin2.jpg', description: 'Cargás cada corte con sus fotos, el precio, la duración y los detalles. Lo que tocás acá se ve al toque en tu página.', highlights: ['Fotos y precio', 'Campos propios', 'Cambios al instante'] },
+      { id: 'bdc-7', title: 'Panel — Productos del local', type: 'admin', url: '/screenshots/barberiatradicional/admin3.jpg', description: 'Pomadas, aceites y shampoos con foto y precio. Con una cajita decidís cuáles se muestran en la página y cuáles no.', highlights: ['Venta de productos', 'Mostrar u ocultar', 'Foto y precio'] }
+    ],
+    demoData: {
+      businessName: 'Barbería The Brother',
+      phone: '+54 9 11 2345-6789',
+      location: 'CABA, Buenos Aires',
+      servicesOrProductsName: 'Servicios',
+      items: [
+        { id: 'bdc-s1', title: 'Corte Moderno & Fade', subtitle: 'Degradado a elección (Skin, Taper o Mullet), lavado y peinado.', price: '$8.500', durationOrStock: '45 min', imageUrl: 'https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=400&q=80', badge: 'Más pedido', category: 'Cortes' },
+        { id: 'bdc-s2', title: 'Afeitado Tradicional a Navaja', subtitle: 'Toallas calientes, aceites esenciales y loción de cierre.', price: '$7.000', durationOrStock: '40 min', imageUrl: 'https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=400&q=80', category: 'Barba' },
+        { id: 'bdc-s3', title: 'Combo VIP: Corte + Barba', subtitle: 'El servicio completo, con cerveza o café de cortesía.', price: '$13.500', durationOrStock: '75 min', imageUrl: 'https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=400&q=80', badge: 'Combo', category: 'Combos' }
+      ],
+      collaborators: [
+        { id: 'bdc-c1', name: 'Marcos "El Navaja"', role: 'Barbero Master (Co-Admin)', email: 'marcos.thebrother@gmail.com', isAdmin: true, avatarUrl: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=150&q=80', activeHours: '9 hrs' },
+        { id: 'bdc-c2', name: 'Lucas "Fade Master"', role: 'Barbero', email: 'lucas.thebrother@gmail.com', isAdmin: false, avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80', activeHours: '7 hrs' }
+      ],
+      sampleOrdersOrTurns: [
+        { id: 'bdc-o1', code: 'TRN-BR-7714', customer: 'Marcos', phone: '1135203657', detail: 'Afeitado Tradicional a Navaja', status: 'Pendiente', total: '$7.000', time: '03:00 PM' },
+        { id: 'bdc-o2', code: 'TRN-BR-5520', customer: 'Gabriel Fernández', phone: '1199887766', detail: 'Combo VIP con Lucas', status: 'Atendido', total: '$13.500', time: '03:30 PM' }
+      ]
+    }
+  },
+
+  {
     id: 'tapper',
     name: 'Tapper',
     tagline: 'Tienda de tapers y envases con catálogo por capacidad y material, carrito y código de retiro. Retiro o envío, y el cobro en tu negocio.',
