@@ -3,6 +3,65 @@ import { AppShowcase, PricingPlan } from '../types';
 export const INITIAL_APPS: AppShowcase[] = [
 
   {
+    id: 'salonunasa',
+    name: 'Salón de Uñas A',
+    tagline: 'Manicuría, nail art y kapping con reserva online, boutique de productos y galería de tus trabajos. La clienta reserva de noche, vos lo ves a la mañana. Sin comisiones.',
+    category: 'estetica',
+    categoryLabel: 'Uñas, Estética & Belleza',
+    iconName: 'Sparkles',
+    monthlyPrice: 5000,
+    currency: 'ARS',
+    badgeText: 'NUEVA',
+    publicViewTitle: 'Tu salón, con la elegancia que se merece',
+    publicViewDescription: 'Una página editorial con tu nombre, tus fotos y tus precios. La clienta ve cada servicio con hasta 5 fotos, elige el suyo, suma productos al canasto y reserva su turno desde el celular. Sin bajar ninguna app y sin crearse una cuenta.',
+    adminViewTitle: 'El panel de la dueña (y de cada colaboradora)',
+    adminViewDescription: 'Los turnos entran con el nombre, el teléfono y el código de la clienta, y le escribís por WhatsApp desde el mismo botón. Cargás servicios y productos con foto, publicás tus trabajos en la galería, y tenés el detalle de todo lo cobrado.',
+    keyFeatures: [
+      'Reserva de turnos online, con código para la clienta',
+      'Cada servicio con hasta 5 fotos y sus detalles',
+      'Boutique de productos con canasto y código de retiro',
+      'Galería de trabajos para mostrar lo que hacés',
+      'Colaboradoras con su propio usuario',
+      'El turno suena en tu celular apenas entra',
+      'Se instala como app y se entra con huella',
+      'Sin comisiones: cobrás vos, en tu salón'
+    ],
+    bannerUrl: '/screenshots/salonunasa/banner.jpg',
+    isActive: true,
+    featured: true,
+    // Página pública REAL de un inquilino de prueba (demo interactiva).
+    demoUrl: 'https://salon-de-unias-a.vercel.app/?codigo=ANIAS-PREM-2026-S7QB',
+    screenshots: [
+      { id: 'anias-1', title: 'Tu página, con tu estilo', type: 'public', url: '/screenshots/salonunasa/pub1.jpg', description: 'Portada editorial con tu nombre, tu logo y tu frase. Diez temas y tipografías para elegir, y música de fondo si querés.', highlights: ['Tu nombre y tu logo', '10 temas a elección', 'Música de fondo'] },
+      { id: 'anias-2', title: 'Los servicios, como en una revista', type: 'public', url: '/screenshots/salonunasa/pub2.jpg', description: 'Cada trabajo con hasta 5 fotos, el precio, la duración y sus detalles. Ordenados por categoría para que la clienta encuentre el suyo.', highlights: ['Hasta 5 fotos', 'Precio y duración', 'Por categorías'] },
+      { id: 'anias-3', title: 'Boutique de productos', type: 'public', url: '/screenshots/salonunasa/pub3.jpg', description: 'Esmaltes, cremas y accesorios con foto y precio. La clienta arma su canasto y retira por el salón con su código.', highlights: ['Canasto', 'Código de retiro', 'Sin comisiones'] },
+      { id: 'anias-4', title: 'Panel — Turnos reservados', type: 'admin', url: '/screenshots/salonunasa/admin1.jpg', description: 'Cada turno entra con el nombre y el teléfono de la clienta, el día, la hora y lo que reservó. WhatsApp a un toque y notas internas.', highlights: ['Turnos en vivo', 'WhatsApp a un toque', 'Notas de la clienta'] },
+      { id: 'anias-5', title: 'Panel — Pedidos de productos', type: 'admin', url: '/screenshots/salonunasa/admin2.jpg', description: 'Los pedidos de la boutique llegan con su código de retiro y el detalle de lo comprado. Los marcás entregados cuando pasa a buscarlos.', highlights: ['Código de retiro', 'Detalle del pedido', 'Estados'] },
+      { id: 'anias-6', title: 'Panel — Todo lo del mes', type: 'admin', url: '/screenshots/salonunasa/admin3.jpg', description: 'El listado completo de turnos y pedidos, con buscador por clienta o código. Para saber cómo viene el mes sin sacar la cuenta a mano.', highlights: ['Buscador', 'Turnos y pedidos', 'Descarga en planilla'] },
+      { id: 'anias-7', title: 'Panel — Galería de trabajos', type: 'admin', url: '/screenshots/salonunasa/admin4.jpg', description: 'Publicás tus sets de uñas con hasta 5 fotos cada uno. Es tu vidriera: lo que más convence a la que todavía no se decidió.', highlights: ['Hasta 5 fotos', 'Publicar o guardar', 'Quién lo hizo'] }
+    ],
+    demoData: {
+      businessName: 'Bella Nails & Spa Studio',
+      phone: '+54 9 11 3344-6677',
+      location: 'CABA, Buenos Aires',
+      servicesOrProductsName: 'Servicios',
+      items: [
+        { id: 'anias-s1', title: 'Nail Art 3D Floral & Cristales Swarovski', subtitle: 'Diseño a mano alzada con relieve 3D, flores esculpidas y pedrería fina.', price: '$16.800', durationOrStock: '105 min', imageUrl: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=400&q=80', badge: 'Destacado', category: 'Nail Art & Diseño 3D' },
+        { id: 'anias-s2', title: 'Soft Gel Nails con Encapsulado Glitz', subtitle: 'Tips de gel completos, encapsulado con glitter tornasolado y hojas de oro rosa.', price: '$14.500', durationOrStock: '90 min', imageUrl: 'https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=400&q=80', category: 'Uñas Esculpidas & Soft Gel' },
+        { id: 'anias-p1', title: 'Set Trío Esmaltes Nude Glam & Top Coat', subtitle: 'Los 3 tonos nude más pedidos del salón, con top coat espejo anti-rayones.', price: '$8.900', durationOrStock: 'Disponible', imageUrl: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=400&q=80', badge: 'Boutique', category: 'Cuidado & Hidratación' }
+      ],
+      collaborators: [
+        { id: 'anias-c1', name: 'Ariel', role: 'Nail Artist (Co-Admin)', email: 'ariel.bellanails@gmail.com', isAdmin: true, avatarUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&q=80', activeHours: '8 hrs' },
+        { id: 'anias-c2', name: 'Tati', role: 'Manicura', email: 'tati.bellanails@gmail.com', isAdmin: false, avatarUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80', activeHours: '6 hrs' }
+      ],
+      sampleOrdersOrTurns: [
+        { id: 'anias-o1', code: 'TURNO-1209', customer: 'La mami', phone: '1133446677', detail: 'Nail Art 3D Floral & Cristales', status: 'Atendido', total: '$16.800', time: '07:30 PM' },
+        { id: 'anias-o2', code: 'RET-9347', customer: 'Mami', phone: '1133446655', detail: 'Set Trío Esmaltes Nude Glam', status: 'Entregado', total: '$8.900', time: '09:42 PM' }
+      ]
+    }
+  },
+
+  {
     id: 'barberiatradicional',
     name: 'Barbería Tradicional & Moderna',
     tagline: 'La barbería de siempre, con la agenda del celular. El cliente elige corte, barbero y horario desde tu QR, y el turno te entra al panel en el momento. Sin comisiones.',
