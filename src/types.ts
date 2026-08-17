@@ -10,6 +10,20 @@ export type AppCategory =
   | 'fitness'
   | 'entretenimiento';
 
+/** Nombre lindo de cada rubro, uno solo para toda la app (pestañas y panel). */
+export const ETIQUETAS_RUBRO: Record<AppCategory, string> = {
+  barberia: 'Barberías & Peluquerías',
+  estetica: 'Uñas, Estética & Belleza',
+  moda: 'Moda & Calzado',
+  gastronomia: 'Gastronomía & Fast Food',
+  petshop: 'Pet Shop & Veterinaria',
+  masajes: 'Aromaterapia & Bienestar',
+  salud: 'Dietética & Salud',
+  almacen: 'Almacén, Bazar & Multirubro',
+  fitness: 'Fitness & Bienestar',
+  entretenimiento: 'Entretenimiento & Alquiler',
+};
+
 export type PageModel = 'cyber-dark' | 'clean-editorial' | 'bento-hub';
 
 export interface AppScreenshot {
@@ -27,6 +41,10 @@ export interface AppShowcase {
   tagline: string;
   category: AppCategory;
   categoryLabel: string;
+  /** Rubros ADICIONALES. La app aparece TAMBIÉN en estas pestañas, además de la
+   *  de `category`. Ej.: Tienda Elección es de "Bazar & Envases" pero también
+   *  vende ropa y calzado, así que se la busca en las dos. */
+  extraCategories?: AppCategory[];
   iconName: string;
   monthlyPrice: number;
   currency: string;
