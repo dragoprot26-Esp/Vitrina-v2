@@ -894,7 +894,6 @@ export const INITIAL_APPS: AppShowcase[] = [
       ],
       "bannerUrl": "/screenshots/comidarapida/banner.jpg",
       "isActive": true,
-      "comingSoon": true,
       "featured": false,
       "screenshots": [
             {
@@ -1041,7 +1040,6 @@ export const INITIAL_APPS: AppShowcase[] = [
       ],
       "bannerUrl": "/screenshots/dulzura/banner.jpg",
       "isActive": true,
-      "comingSoon": true,
       "featured": false,
       "screenshots": [
             {
@@ -1927,7 +1925,6 @@ export const INITIAL_APPS: AppShowcase[] = [
       ],
       "bannerUrl": "/screenshots/tiendalibre/banner.jpg",
       "isActive": true,
-      "comingSoon": true,
       "featured": true,
       "screenshots": [
             {
