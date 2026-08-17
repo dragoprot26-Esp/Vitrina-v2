@@ -11,7 +11,7 @@ import { TechSupportSection } from './components/TechSupportSection';
 import { ContactModal } from './components/ContactModal';
 import { ShareModal } from './components/ShareModal';
 import { INITIAL_APPS, PRICING_PLANS } from './data/initialApps';
-import { AppShowcase, PageModel, PricingPlan } from './types';
+import { AppShowcase, PageModel, PricingPlan, ETIQUETAS_RUBRO } from './types';
 import { Sparkles, MessageCircle, Shield, CheckCircle2, Phone, Star, Layers, HelpCircle, ArrowUpRight } from 'lucide-react';
 import { useLanguage } from './context/LanguageContext';
 
@@ -83,11 +83,18 @@ export default function App() {
   const [isShareOpen, setIsShareOpen] = useState<boolean>(false);
   const [contactAppName, setContactAppName] = useState<string>('');
 
+  // Rubros de una app: el principal MÁS los adicionales. Una misma app puede
+  // aparecer en varias pestañas (ej.: Tienda Elección, en Bazar y en Moda).
+  const rubrosDe = (a: AppShowcase): string[] => {
+    const extras = Array.isArray((a as any).extraCategories) ? (a as any).extraCategories : [];
+    return Array.from(new Set([a.category, ...extras].filter(Boolean)));
+  };
+
   // Filtered Apps
   const filteredApps = apps.filter((app) => {
     if (!app.isActive) return false;
     if (activeCategory === 'all') return true;
-    return app.category === activeCategory;
+    return rubrosDe(app).includes(activeCategory);
   });
 
   // Dynamic category list (only rubros that have active apps), in a preferred order
@@ -95,11 +102,16 @@ export default function App() {
   const activeApps = apps.filter((a) => a.isActive);
   const availableCategories = Array.from(
     activeApps.reduce((map, a) => {
-      if (!map.has(a.category)) map.set(a.category, a.categoryLabel || a.category);
+      rubrosDe(a).forEach((r) => {
+        if (map.has(r)) return;
+        // El nombre de la pestaña sale de la tabla común. Solo si el rubro no
+        // está en la tabla usamos la etiqueta propia de la app.
+        map.set(r, (ETIQUETAS_RUBRO as any)[r] || a.categoryLabel || r);
+      });
       return map;
     }, new Map<string, string>())
   ).sort((a, b) => CATEGORY_ORDER.indexOf(a[0]) - CATEGORY_ORDER.indexOf(b[0]));
-  const countFor = (cat: string) => activeApps.filter((a) => a.category === cat).length;
+  const countFor = (cat: string) => activeApps.filter((a) => rubrosDe(a).includes(cat)).length;
 
   // Admin Handlers
   const handleAddApp = (newApp: AppShowcase) => {
