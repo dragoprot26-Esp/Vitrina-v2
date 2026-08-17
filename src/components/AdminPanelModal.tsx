@@ -37,7 +37,7 @@ import {
   Download,
   Upload
 } from 'lucide-react';
-import { AppShowcase, AppCategory, SupportTicket, AppRentalLead, PageModel, PricingPlan, DemoTenant } from '../types';
+import { AppShowcase, AppCategory, SupportTicket, AppRentalLead, PageModel, PricingPlan, DemoTenant, ETIQUETAS_RUBRO } from '../types';
 import { listLeads, markLeadRead, deleteLead, CloudLead } from '../cloud';
 
 interface AdminPanelModalProps {
@@ -642,6 +642,11 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
   const [formBadge, setFormBadge] = useState('NUEVA APP');
   const [formBanner, setFormBanner] = useState('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80');
   const [formFeatures, setFormFeatures] = useState('Turnos online, Control de personal, Notificaciones Push');
+  // Link de la página pública de un inquilino de prueba (el botón "Ver cómo lo
+  // ve el cliente" de la tarjeta). Va con el ?codigo= adentro.
+  const [formDemoUrl, setFormDemoUrl] = useState('');
+  // Rubros ADICIONALES: la app también aparece en esas pestañas.
+  const [formExtraCats, setFormExtraCats] = useState<AppCategory[]>([]);
 
   // Mock Support Tickets
   const [supportTickets, setSupportTickets] = useState<SupportTicket[]>([
@@ -918,22 +923,26 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
     setFormBadge('NUEVA APP');
     setFormBanner('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80');
     setFormFeatures('Turnos online, Control de personal, Notificaciones Push');
+    setFormDemoUrl('');
+    setFormExtraCats([]);
     setIsAddingApp(false);
     setEditingAppId(null);
   };
 
   const handleSaveApp = (e: React.FormEvent) => {
     e.preventDefault();
-    const categoryLabels: Record<AppCategory, string> = {
-      barberia: 'Barberías & Peluquerías',
-      estetica: 'Salón de Uñas & Estética',
-      moda: 'Calzado & Boutique',
-      gastronomia: 'Gastronomía & Fast Food',
-      petshop: 'Pet Shop & Veterinaria',
-      masajes: 'Masajes & Spa',
-    };
+    // OJO: antes acá había una tabla de nombres a la que le faltaban rubros
+    // (salud, almacén, fitness, entretenimiento). Editar una app de esos rubros
+    // le dejaba el nombre de la pestaña VACÍO. Ahora se usa la tabla común.
+    const categoryLabels = ETIQUETAS_RUBRO;
+
+    // Si estamos EDITANDO, partimos de la app tal como está y solo pisamos los
+    // campos del formulario. Antes se armaba una app nueva desde cero: editar
+    // el precio de una app te borraba sus capturas, su demo y su link público.
+    const anterior = editingAppId ? apps.find((a) => a.id === editingAppId) : undefined;
 
     const newAppObj: AppShowcase = {
+      ...(anterior || {} as AppShowcase),
       id: editingAppId || `app-${Date.now()}`,
       name: formName || 'Nueva App Comercial',
       tagline: formTagline || 'Aplicación personalizada para tu negocio',
@@ -949,9 +958,13 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
       adminViewDescription: 'Control total con soporte multi-ayudante y notificaciones live.',
       keyFeatures: formFeatures.split(',').map((f) => f.trim()),
       bannerUrl: formBanner,
-      isActive: true,
-      featured: true,
-      screenshots: [
+      extraCategories: formExtraCats,
+      demoUrl: formDemoUrl.trim() || undefined,
+      isActive: anterior ? anterior.isActive : true,
+      featured: anterior ? anterior.featured : true,
+      screenshots: anterior && anterior.screenshots && anterior.screenshots.length
+        ? anterior.screenshots
+        : [
         {
           id: `sc-1-${Date.now()}`,
           title: 'Vista Cliente — Página Pública',
@@ -969,7 +982,7 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
           highlights: ['Soporte multi-usuario', 'Reportes de ventas'],
         },
       ],
-      demoData: {
+      demoData: (anterior && anterior.demoData) ? anterior.demoData : {
         businessName: formName,
         phone: '+54 9 1100000000',
         location: 'Sucursal Central',
@@ -1437,13 +1450,47 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
                             }
                             className="w-full bg-[#1A1C20] border border-white/10 px-3 py-2 text-xs text-white focus:outline-none focus:border-[#C5A059]"
                           >
-                            <option value="barberia">Barbería & Peluquería</option>
-                            <option value="estetica">Salón de Uñas & Estética</option>
-                            <option value="moda">Calzado & Boutique</option>
-                            <option value="gastronomia">Gastronomía & Fast Food</option>
-                            <option value="petshop">Pet Shop & Veterinaria</option>
-                            <option value="masajes">Masajes & Spa</option>
+                            {(Object.keys(ETIQUETAS_RUBRO) as AppCategory[]).map((r) => (
+                              <option key={r} value={r}>{ETIQUETAS_RUBRO[r]}</option>
+                            ))}
                           </select>
+                        </div>
+
+                        {/* Rubros ADICIONALES ─ la app aparece también en esas pestañas */}
+                        <div className="sm:col-span-2">
+                          <label className="text-xs text-[#C5A059] block mb-1 uppercase tracking-wider font-semibold">
+                            También mostrarla en estas pestañas (opcional):
+                          </label>
+                          <p className="text-[10px] text-white/40 mb-2 leading-relaxed">
+                            Tildá los rubros donde también querés que aparezca. Ejemplo: Tienda
+                            Elección es de Bazar, pero también vende ropa y calzado, así que
+                            conviene que salga en las dos.
+                          </p>
+                          <div className="flex flex-wrap gap-2">
+                            {(Object.keys(ETIQUETAS_RUBRO) as AppCategory[])
+                              .filter((r) => r !== formCategory)
+                              .map((r) => {
+                                const puesto = formExtraCats.includes(r);
+                                return (
+                                  <button
+                                    type="button"
+                                    key={r}
+                                    onClick={() =>
+                                      setFormExtraCats((prev) =>
+                                        prev.includes(r) ? prev.filter((x) => x !== r) : [...prev, r]
+                                      )
+                                    }
+                                    className={`px-3 py-1.5 text-[11px] border transition-colors ${
+                                      puesto
+                                        ? 'bg-[#C5A059] border-[#C5A059] text-black font-semibold'
+                                        : 'bg-[#1A1C20] border-white/10 text-white/60 hover:border-[#C5A059] hover:text-white'
+                                    }`}
+                                  >
+                                    {puesto ? '✓ ' : ''}{ETIQUETAS_RUBRO[r]}
+                                  </button>
+                                );
+                              })}
+                          </div>
                         </div>
 
                         <div className="sm:col-span-2">
@@ -1496,6 +1543,25 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
                             onChange={(e) => setFormBanner(e.target.value)}
                             className="w-full bg-[#1A1C20] border border-white/10 px-3 py-2 text-xs text-white focus:outline-none focus:border-[#C5A059] font-mono"
                           />
+                        </div>
+
+                        {/* Link de la página pública (botón "Ver cómo lo ve el cliente") */}
+                        <div className="sm:col-span-2">
+                          <label className="text-xs text-[#C5A059] block mb-1 uppercase tracking-wider font-semibold">
+                            Link de la página pública (botón “Ver cómo lo ve el cliente”):
+                          </label>
+                          <input
+                            type="url"
+                            value={formDemoUrl}
+                            onChange={(e) => setFormDemoUrl(e.target.value)}
+                            placeholder="https://mi-app.vercel.app/?codigo=XXXX-PREM-2026-XXXX"
+                            className="w-full bg-[#1A1C20] border border-white/10 px-3 py-2 text-xs text-white focus:outline-none focus:border-[#C5A059] font-mono"
+                          />
+                          <p className="text-[10px] text-white/40 mt-1 leading-relaxed">
+                            Pegá la dirección de la página pública de un local de prueba, con el
+                            <span className="font-mono text-white/60"> ?codigo= </span>
+                            adentro. Si lo dejás vacío, la tarjeta no muestra ese botón.
+                          </p>
                         </div>
 
                         <div className="sm:col-span-2">
@@ -1572,6 +1638,8 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
                               setFormBadge(app.badgeText);
                               setFormBanner(app.bannerUrl);
                               setFormFeatures(app.keyFeatures.join(', '));
+                              setFormDemoUrl(app.demoUrl || '');
+                              setFormExtraCats(app.extraCategories || []);
                               setIsAddingApp(true);
                               if (contentRef.current) {
                                 contentRef.current.scrollTo({ top: 0, behavior: 'smooth' });
