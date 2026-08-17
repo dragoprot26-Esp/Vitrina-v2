@@ -144,7 +144,6 @@ export const INITIAL_APPS: AppShowcase[] = [
     bannerUrl: '/screenshots/tapper/banner.jpg',
     isActive: true,
     featured: true,
-    comingSoon: true,
     // Página pública REAL de un inquilino de prueba (demo interactiva).
     demoUrl: 'https://tapper-store.vercel.app/?codigo=TAPP-PREM-2026-JI74',
     screenshots: [
@@ -196,7 +195,6 @@ export const INITIAL_APPS: AppShowcase[] = [
     bannerUrl: '/screenshots/aromazen/banner.jpg',
     isActive: true,
     featured: true,
-    comingSoon: true,
     // Demo interactiva: la página por defecto ya viene con catálogo cargado (se ve de 10).
     demoUrl: 'https://aromazen-pwa-multitenant.vercel.app/',
     screenshots: [
@@ -247,7 +245,6 @@ export const INITIAL_APPS: AppShowcase[] = [
     ],
     bannerUrl: '/screenshots/brillos/banner.jpg',
     isActive: true,
-    comingSoon: true,
     featured: true,
     // Demo interactiva: página pública con catálogo cargado.
     demoUrl: 'https://brillos-neon.vercel.app/',
@@ -352,7 +349,6 @@ export const INITIAL_APPS: AppShowcase[] = [
     ],
     bannerUrl: '/screenshots/clothes/banner.jpg',
     isActive: true,
-    comingSoon: true,
     featured: false,
     screenshots: [
       { id: 'clot-1', title: 'Página Pública — Vidriera', type: 'public', url: '/screenshots/clothes/pub1.jpg', description: 'Portada elegante con colección destacada por categorías.', highlights: ['Moda premium', 'Por categorías', 'Retiro en tienda'] },
@@ -404,7 +400,6 @@ export const INITIAL_APPS: AppShowcase[] = [
     ],
     bannerUrl: '/screenshots/calzadofemenino/banner.jpg',
     isActive: true,
-    comingSoon: true,
     featured: false,
     screenshots: [
       { id: 'calf-1', title: 'Página Pública — Portada Elegante', type: 'public', url: '/screenshots/calzadofemenino/pub1.jpg', description: 'Portada que enamora, con colección por categorías.', highlights: ['Elegante', 'Por categorías', 'Retiro en local'] },
@@ -455,7 +450,6 @@ export const INITIAL_APPS: AppShowcase[] = [
     ],
     bannerUrl: '/screenshots/auraglam/banner.jpg',
     isActive: true,
-    comingSoon: true,
     featured: true,
     screenshots: [
       { id: 'aura-1', title: 'Página Pública — Reservá tu cita', type: 'public', url: '/screenshots/auraglam/pub1.jpg', description: 'Estética premium. La clienta elige servicio, día y horario en 3 clics.', highlights: ['Reserva 24 hs', 'Estilo premium', 'Sin comisiones'] },
@@ -508,7 +502,6 @@ export const INITIAL_APPS: AppShowcase[] = [
     ],
     bannerUrl: '/screenshots/bellasunias/banner.jpg',
     isActive: true,
-    comingSoon: true,
     featured: false,
     screenshots: [
       { id: 'bell-1', title: 'Página Pública — Reservá tu turno', type: 'public', url: '/screenshots/bellasunias/pub1.jpg', description: 'Servicios de uñas y estética listos para reservar.', highlights: ['Reserva online', 'Servicios', 'Productos'] },
@@ -609,7 +602,6 @@ export const INITIAL_APPS: AppShowcase[] = [
       ],
       "bannerUrl": "/screenshots/pizza/banner.jpg",
       "isActive": true,
-      "comingSoon": true,
       "featured": true,
       "screenshots": [
             {
@@ -756,7 +748,6 @@ export const INITIAL_APPS: AppShowcase[] = [
       ],
       "bannerUrl": "/screenshots/pancheria/banner.jpg",
       "isActive": true,
-      "comingSoon": true,
       "featured": false,
       "screenshots": [
             {
@@ -1197,7 +1188,6 @@ export const INITIAL_APPS: AppShowcase[] = [
       ],
       "bannerUrl": "/screenshots/barberia/banner.jpg",
       "isActive": true,
-      "comingSoon": true,
       "featured": true,
       "screenshots": [
             {
@@ -1499,7 +1489,6 @@ export const INITIAL_APPS: AppShowcase[] = [
       ],
       "bannerUrl": "/screenshots/vidagenuina/banner.jpg",
       "isActive": true,
-      "comingSoon": true,
       "featured": false,
       "screenshots": [
             {
@@ -1646,7 +1635,6 @@ export const INITIAL_APPS: AppShowcase[] = [
       ],
       "bannerUrl": "/screenshots/mascotas/banner.jpg",
       "isActive": true,
-      "comingSoon": true,
       "featured": true,
       "screenshots": [
             {
@@ -1793,7 +1781,6 @@ export const INITIAL_APPS: AppShowcase[] = [
       ],
       "bannerUrl": "/screenshots/fashionspets/banner.jpg",
       "isActive": true,
-      "comingSoon": true,
       "featured": false,
       "screenshots": [
             {
@@ -2086,7 +2073,6 @@ export const INITIAL_APPS: AppShowcase[] = [
       ],
       "bannerUrl": "/screenshots/quimicos/banner.jpg",
       "isActive": true,
-      "comingSoon": true,
       "featured": false,
       "screenshots": [
             {
@@ -2221,7 +2207,6 @@ export const INITIAL_APPS: AppShowcase[] = [
       ],
       "bannerUrl": "/screenshots/fitness/banner.jpg",
       "isActive": true,
-      "comingSoon": true,
       "featured": false,
       "screenshots": [
             {
@@ -2368,7 +2353,6 @@ export const INITIAL_APPS: AppShowcase[] = [
       ],
       "bannerUrl": "/screenshots/tudiversion/banner.jpg",
       "isActive": true,
-      "comingSoon": true,
       "featured": false,
       "screenshots": [
             {
