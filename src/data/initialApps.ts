@@ -2494,6 +2494,9 @@ export const INITIAL_APPS: AppShowcase[] = [
     tagline: 'Tienda multiuso adaptable a cualquier rubro: catálogo con fotos, talles y variantes, carrito y pedidos con código de retiro. 3 temas de diseño, música y el cobro siempre en tu negocio.',
     category: 'almacen',
     categoryLabel: 'Multirubro & Tienda',
+    // Es de Bazar/Multirubro, pero también vende ropa y calzado: aparece en
+    // las dos pestañas.
+    extraCategories: ['moda'],
     iconName: 'ShoppingBag',
     monthlyPrice: 5000,
     currency: 'ARS',
