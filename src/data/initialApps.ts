@@ -196,7 +196,7 @@ export const INITIAL_APPS: AppShowcase[] = [
     isActive: true,
     featured: true,
     // Demo interactiva: la página por defecto ya viene con catálogo cargado (se ve de 10).
-    demoUrl: 'https://aromazen-pwa-multitenant.vercel.app/',
+    demoUrl: 'https://aromazen-pwa-multitenant.vercel.app/?codigo=AROMA-PREM-2026-0T36',
     screenshots: [
       { id: 'aroma-1', title: 'Página Pública — Vidriera Mística', type: 'public', url: '/screenshots/aromazen/pub1.jpg', description: 'Catálogo de saumerios y aromatizantes con foto, precio y detalle. El cliente arma su pedido desde el celular.', highlights: ['Estilo místico', 'Por categorías', 'Sin comisiones'] },
       { id: 'aroma-2', title: 'Impecable en el Celular (PWA)', type: 'public', url: '/screenshots/aromazen/pub2.jpg', description: 'Se ve perfecto en el móvil y se instala como app. Entran escaneando tu QR.', highlights: ['Instalable', 'QR del local', 'Rápida'] },
@@ -247,7 +247,7 @@ export const INITIAL_APPS: AppShowcase[] = [
     isActive: true,
     featured: true,
     // Demo interactiva: página pública con catálogo cargado.
-    demoUrl: 'https://brillos-neon.vercel.app/',
+    demoUrl: 'https://brillos-neon.vercel.app/?codigo=BRIL-PREM-2026-VH3G',
     screenshots: [
       { id: 'bril-1', title: 'Página Pública — Vidriera Neón', type: 'public', url: '/screenshots/brillos/pub1.jpg', description: 'Catálogo con talles, fotos y precio. El cliente suma al canasto desde el celular.', highlights: ['Estilo neón', 'Talles y fotos', 'Sin comisiones'] },
       { id: 'bril-2', title: 'Categorías y Productos', type: 'public', url: '/screenshots/brillos/pub2.jpg', description: 'Remeras, buzos, calzados y accesorios ordenados por categoría.', highlights: ['Por categorías', 'Carrito', 'QR del local'] },
@@ -299,7 +299,7 @@ export const INITIAL_APPS: AppShowcase[] = [
     isActive: true,
     featured: true,
     // Demo interactiva: página pública con catálogo cargado.
-    demoUrl: 'https://boutique-multi-tenant-platform.vercel.app/',
+    demoUrl: 'https://boutique-multi-tenant-platform.vercel.app/?codigo=BOUT-PREM-2026-2IPB',
     screenshots: [
       { id: 'bout-1', title: 'Página Pública — Vidriera NY', type: 'public', url: '/screenshots/boutique/pub1.jpg', description: 'Colección con foto, precio y talles. Estilo outlet premium neoyorquino.', highlights: ['Estilo NY', 'Talles y colores', 'Retiro en tienda'] },
       { id: 'bout-2', title: 'Canasto del Cliente', type: 'public', url: '/screenshots/boutique/pub2.jpg', description: 'El cliente arma su pedido y confirma con código de retiro.', highlights: ['Carrito', 'Código de retiro', 'Sin comisiones'] },
@@ -350,6 +350,8 @@ export const INITIAL_APPS: AppShowcase[] = [
     bannerUrl: '/screenshots/clothes/banner.jpg',
     isActive: true,
     featured: false,
+    // Página pública REAL de un inquilino de prueba (demo interactiva).
+    demoUrl: 'https://clothes-multi-tenant.vercel.app/?codigo=CLOT-PREM-2026-XEI6',
     screenshots: [
       { id: 'clot-1', title: 'Página Pública — Vidriera', type: 'public', url: '/screenshots/clothes/pub1.jpg', description: 'Portada elegante con colección destacada por categorías.', highlights: ['Moda premium', 'Por categorías', 'Retiro en tienda'] },
       { id: 'clot-2', title: 'Colección', type: 'public', url: '/screenshots/clothes/pub2.jpg', description: 'Prendas con foto, talle y precio, listas para sumar al carrito.', highlights: ['Talles', 'Carrito', 'Reseñas'] },
@@ -386,7 +388,7 @@ export const INITIAL_APPS: AppShowcase[] = [
     monthlyPrice: 5000,
     currency: 'ARS',
     badgeText: 'NUEVO',
-    demoUrl: 'https://calzados-femeninos-ivory.vercel.app/',
+    demoUrl: 'https://calzados-femeninos-ivory.vercel.app/?codigo=CALF-PREM-2026-YT9B',
     publicViewTitle: 'Sofía Calzados — Página Pública',
     publicViewDescription: 'Calzado exclusivo para damas modernas. Diseños con foto, talle y precio, listos para sumar al carrito desde el celular.',
     adminViewTitle: 'Panel de Calzados (Dueño / Colaboradores)',
@@ -436,7 +438,7 @@ export const INITIAL_APPS: AppShowcase[] = [
     monthlyPrice: 5000,
     currency: 'ARS',
     badgeText: 'MÁS ALQUILADO',
-    demoUrl: 'https://sal-n-de-belleza-reservas-y-gesti-n.vercel.app/',
+    demoUrl: 'https://sal-n-de-belleza-reservas-y-gesti-n.vercel.app/?codigo=GLAM-PREM-2026-D9Q2',
     publicViewTitle: 'Aura Glam — Página Pública',
     publicViewDescription: 'Salón & spa con estética premium. La clienta ve tus servicios, reserva su cita en segundos y suma productos desde el celular.',
     adminViewTitle: 'Panel de Aura Glam (Dueña / Colaboradoras)',
@@ -488,7 +490,7 @@ export const INITIAL_APPS: AppShowcase[] = [
     monthlyPrice: 5000,
     currency: 'ARS',
     badgeText: 'APP PWA',
-    demoUrl: 'https://bellas-u-as-2.vercel.app/',
+    demoUrl: 'https://bellas-u-as-2.vercel.app/?codigo=BELL-PREM-2026-4YH4',
     publicViewTitle: 'Bellas Uñas — Página Pública',
     publicViewDescription: 'La clienta reserva su turno de manicuría o estética, ve servicios y suma productos desde el celular.',
     adminViewTitle: 'Panel de Bellas Uñas (Dueña / Colaboradoras)',
@@ -539,7 +541,7 @@ export const INITIAL_APPS: AppShowcase[] = [
     monthlyPrice: 5000,
     currency: 'ARS',
     badgeText: 'NUEVO',
-    demoUrl: 'https://sal-n-de-est-tica.vercel.app/',
+    demoUrl: 'https://sal-n-de-est-tica.vercel.app/?codigo=BELA-PREM-2026-C4Y7',
     publicViewTitle: 'BellaVista Estética — Página Pública',
     publicViewDescription: 'La imagen premium que tu estética merece: reserva de turnos 24 hs, catálogo de servicios y opiniones que generan confianza.',
     adminViewTitle: 'Panel de BellaVista (Dueña / Profesionales)',
@@ -602,6 +604,7 @@ export const INITIAL_APPS: AppShowcase[] = [
       ],
       "bannerUrl": "/screenshots/pizza/banner.jpg",
       "isActive": true,
+      "demoUrl": "https://pizza-nyc.vercel.app/?codigo=PIZZ-PREM-2026-TTPF",
       "featured": true,
       "screenshots": [
             {
@@ -748,6 +751,7 @@ export const INITIAL_APPS: AppShowcase[] = [
       ],
       "bannerUrl": "/screenshots/pancheria/banner.jpg",
       "isActive": true,
+      "demoUrl": "https://pancheria-el-super-pancho.vercel.app/?codigo=PANC-PREM-2026-KA2F",
       "featured": false,
       "screenshots": [
             {
@@ -894,6 +898,7 @@ export const INITIAL_APPS: AppShowcase[] = [
       ],
       "bannerUrl": "/screenshots/comidarapida/banner.jpg",
       "isActive": true,
+      "demoUrl": "https://comida-rapida-five.vercel.app/?codigo=COMI-TRIAL-2026-R1NR",
       "featured": false,
       "screenshots": [
             {
@@ -1040,6 +1045,7 @@ export const INITIAL_APPS: AppShowcase[] = [
       ],
       "bannerUrl": "/screenshots/dulzura/banner.jpg",
       "isActive": true,
+      "demoUrl": "https://dulzura-hogar.vercel.app/?codigo=DULZ-TRIAL-2026-RSBP",
       "featured": false,
       "screenshots": [
             {
@@ -1186,6 +1192,7 @@ export const INITIAL_APPS: AppShowcase[] = [
       ],
       "bannerUrl": "/screenshots/barberia/banner.jpg",
       "isActive": true,
+      "demoUrl": "https://empire-barber-club.vercel.app/?codigo=BARB-PREM-2026-MPRR",
       "featured": true,
       "screenshots": [
             {
@@ -1341,6 +1348,7 @@ export const INITIAL_APPS: AppShowcase[] = [
       ],
       "bannerUrl": "/screenshots/tudietetica/banner.jpg",
       "isActive": true,
+      "demoUrl": "https://tu-dietetica-26.vercel.app/?codigo=DIET-PREM-2026-NF3G",
       "featured": false,
       "screenshots": [
             {
@@ -1487,6 +1495,7 @@ export const INITIAL_APPS: AppShowcase[] = [
       ],
       "bannerUrl": "/screenshots/vidagenuina/banner.jpg",
       "isActive": true,
+      "demoUrl": "https://diet-tica-vida-genuina.vercel.app/?codigo=VIDA-TRIAL-2026-7SP1",
       "featured": false,
       "screenshots": [
             {
@@ -1633,6 +1642,7 @@ export const INITIAL_APPS: AppShowcase[] = [
       ],
       "bannerUrl": "/screenshots/mascotas/banner.jpg",
       "isActive": true,
+      "demoUrl": "https://mascotas-vida-genuina.vercel.app/?codigo=PET-TRIAL-2026-1F2T",
       "featured": true,
       "screenshots": [
             {
@@ -1779,6 +1789,7 @@ export const INITIAL_APPS: AppShowcase[] = [
       ],
       "bannerUrl": "/screenshots/fashionspets/banner.jpg",
       "isActive": true,
+      "demoUrl": "https://fashions-pets.vercel.app/?codigo=FPET-PREM-2026-09AU",
       "featured": false,
       "screenshots": [
             {
@@ -1925,6 +1936,7 @@ export const INITIAL_APPS: AppShowcase[] = [
       ],
       "bannerUrl": "/screenshots/tiendalibre/banner.jpg",
       "isActive": true,
+      "demoUrl": "https://tienda-libre-chi.vercel.app/?codigo=TIEN-TRIAL-2026-34XL",
       "featured": true,
       "screenshots": [
             {
@@ -2070,6 +2082,7 @@ export const INITIAL_APPS: AppShowcase[] = [
       ],
       "bannerUrl": "/screenshots/quimicos/banner.jpg",
       "isActive": true,
+      "demoUrl": "https://productos-qu-micos.vercel.app/?codigo=QUIM-PREM-2026-6OB6",
       "featured": false,
       "screenshots": [
             {
@@ -2204,6 +2217,7 @@ export const INITIAL_APPS: AppShowcase[] = [
       ],
       "bannerUrl": "/screenshots/fitness/banner.jpg",
       "isActive": true,
+      "demoUrl": "https://fitness-multi-inquilino.vercel.app/?codigo=ZUMB-PREM-2026-TOHU",
       "featured": false,
       "screenshots": [
             {
@@ -2350,6 +2364,7 @@ export const INITIAL_APPS: AppShowcase[] = [
       ],
       "bannerUrl": "/screenshots/tudiversion/banner.jpg",
       "isActive": true,
+      "demoUrl": "https://tu-diversi-n.vercel.app/?codigo=DIVE-PREM-2026-L31Q",
       "featured": false,
       "screenshots": [
             {
@@ -2483,7 +2498,7 @@ export const INITIAL_APPS: AppShowcase[] = [
     monthlyPrice: 5000,
     currency: 'ARS',
     badgeText: 'NUEVA',
-    demoUrl: 'https://tele-tienda-eleccion.vercel.app/',
+    demoUrl: 'https://tele-tienda-eleccion.vercel.app/?codigo=TELE-PREM-2026-EW2N',
     publicViewTitle: 'Tienda Elección — Tienda Oficial',
     publicViewDescription: 'Catálogo multiuso con fotos, categorías y buscador. El cliente arma su pedido desde el celular, elige retiro o envío y recibe su código de retiro. Sin registrarse ni instalar nada.',
     adminViewTitle: 'Panel de Tienda Elección (Dueño / Colaboradores)',
@@ -2536,7 +2551,7 @@ export const INITIAL_APPS: AppShowcase[] = [
     monthlyPrice: 5000,
     currency: 'ARS',
     badgeText: 'NUEVA',
-    demoUrl: 'https://tragos-night-club-1.vercel.app/',
+    demoUrl: 'https://tragos-night-club-1.vercel.app/?codigo=NIGHT-PREM-2026-H9RQ',
     publicViewTitle: 'Tragos Night Club — Carta Oficial',
     publicViewDescription: 'Carta de tragos y cócteles con fotos y efectos neón láser, categorías (cócteles, tragos de autor, cervezas, promos) y buscador. El cliente pide desde el celular con retiro en barra o delivery.',
     adminViewTitle: 'Panel de Tragos Night Club (Dueño / Colaboradores)',
