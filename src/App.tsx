@@ -98,7 +98,7 @@ export default function App() {
   });
 
   // Dynamic category list (only rubros that have active apps), in a preferred order
-  const CATEGORY_ORDER = ['moda', 'estetica', 'gastronomia', 'barberia', 'salud', 'petshop', 'almacen', 'fitness', 'entretenimiento', 'masajes'];
+  const CATEGORY_ORDER = ['moda', 'estetica', 'gastronomia', 'barberia', 'salud', 'petshop', 'almacen', 'fitness', 'entretenimiento', 'masajes', 'trabajo'];
   const activeApps = apps.filter((a) => a.isActive);
   const availableCategories = Array.from(
     activeApps.reduce((map, a) => {

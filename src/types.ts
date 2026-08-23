@@ -8,7 +8,8 @@ export type AppCategory =
   | 'salud'
   | 'almacen'
   | 'fitness'
-  | 'entretenimiento';
+  | 'entretenimiento'
+  | 'trabajo';
 
 /** Nombre lindo de cada rubro, uno solo para toda la app (pestañas y panel). */
 export const ETIQUETAS_RUBRO: Record<AppCategory, string> = {
@@ -22,6 +23,7 @@ export const ETIQUETAS_RUBRO: Record<AppCategory, string> = {
   almacen: 'Almacén, Bazar & Multirubro',
   fitness: 'Fitness & Bienestar',
   entretenimiento: 'Entretenimiento & Alquiler',
+  trabajo: 'Trabajadores & Oficios',
 };
 
 export type PageModel = 'cyber-dark' | 'clean-editorial' | 'bento-hub';
