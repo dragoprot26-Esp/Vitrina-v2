@@ -21,7 +21,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({
   const [email, setEmail] = useState('');
   const [selectedRubro, setSelectedRubro] = useState('barberia');
   const [notes, setNotes] = useState(
-    defaultAppName ? `Deseo alquilar la app: ${defaultAppName}` : ''
+    defaultAppName ? `Me interesa la app: ${defaultAppName}` : ''
   );
   const [isSubmitted, setIsSubmitted] = useState(false);
 
