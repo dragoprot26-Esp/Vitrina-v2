@@ -1,6 +1,52 @@
 import { AppShowcase, PricingPlan } from '../types';
 
 export const INITIAL_APPS: AppShowcase[] = [
+  {
+    id: 'controlfichado',
+    name: 'Control de Fichado y Horas',
+    tagline: 'La app del trabajador para llevar sus propias horas. Ficha entrada y salida, calcula las extras al 50% y al 100% con las reglas del convenio, y arma la planilla del mes lista para mandar por WhatsApp o mail.',
+    category: 'trabajo',
+    categoryLabel: 'Trabajadores & Oficios',
+    iconName: 'Clock',
+    monthlyPrice: 0,
+    currency: '$',
+    badgeText: 'GRATIS',
+    publicViewTitle: 'Control de Fichado — Pantalla de inicio',
+    publicViewDescription: 'Un botón para fichar entrada y salida, y abajo el resumen del mes con las horas y el estimado a cobrar.',
+    adminViewTitle: 'Planilla y registros del mes',
+    adminViewDescription: 'El detalle de todas las fichadas, el gráfico de horas normales contra extras, y la descarga de la planilla en Excel o PDF.',
+    keyFeatures: [
+      'Fichada por QR o a mano',
+      'Horas al 50% y al 100% calculadas solas',
+      'Regla del sábado con corte horario',
+      'Adicionales y descuentos de ley',
+      'Planilla a Excel, PDF o WhatsApp',
+      'Funciona sin señal',
+    ],
+    bannerUrl: '/screenshots/controlfichado/banner.jpg',
+    isActive: true,
+    featured: false,
+    // Esta app no tiene página pública de inquilino: se abre y se usa. Por eso
+    // el botón lleva directo a la app, sin ?codigo=.
+    demoUrl: 'https://control-de-fichado-y-horas.vercel.app/',
+    screenshots: [
+      { id: 'fich-1', title: 'Fichar entrada y salida', type: 'public', url: '/screenshots/controlfichado/pub1.jpg', description: 'Un botón grande y listo. Abajo, el resumen del mes: las horas trabajadas, las extras al 50% y al 100%, y el estimado neto a cobrar.', highlights: ['Un solo botón', 'Horas extras al día', 'Estimado del mes'] },
+      { id: 'fich-2', title: 'La planilla del mes', type: 'admin', url: '/screenshots/controlfichado/admin1.jpg', description: 'Todas las fichadas del mes con el gráfico de horas normales contra extras. Se baja en Excel o PDF y se manda por WhatsApp o mail.', highlights: ['Excel y PDF', 'Gráfico del mes', 'Histórico por año'] },
+    ],
+    demoData: {
+      businessName: 'Mi trabajo',
+      phone: '',
+      location: 'Turno mañana',
+      servicesOrProductsName: 'Fichadas del mes',
+      items: [
+        { id: 'fich-i1', title: 'Jornada normal', subtitle: 'Lunes a viernes, 8 horas.', price: '8.0 hs', durationOrStock: 'Normal', imageUrl: '/screenshots/controlfichado/pub1.jpg', badge: 'Normal', category: 'Jornada' },
+        { id: 'fich-i2', title: 'Sábado hasta las 13:00', subtitle: 'Con recargo del 50% según el convenio.', price: '4.0 hs', durationOrStock: 'Al 50%', imageUrl: '/screenshots/controlfichado/pub1.jpg', badge: 'Extra 50%', category: 'Horas extras' },
+        { id: 'fich-i3', title: 'Domingo o feriado', subtitle: 'Con recargo del 100%.', price: '6.0 hs', durationOrStock: 'Al 100%', imageUrl: '/screenshots/controlfichado/pub1.jpg', badge: 'Extra 100%', category: 'Horas extras' },
+      ],
+      collaborators: [],
+      sampleOrdersOrTurns: [],
+    },
+  },
 
   {
     id: 'salonunasa',
