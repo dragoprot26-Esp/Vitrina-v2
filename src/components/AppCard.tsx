@@ -53,6 +53,10 @@ export const AppCard: React.FC<AppCardProps> = ({
     );
   };
 
+  /* ¿Esta app es gratis? Lo decide el precio, no una lista aparte: el día que
+     pongas otra en cero, se comporta igual sin tocar el código. */
+  const esGratis = !Number(app.monthlyPrice);
+
   return (
     <div className="relative overflow-hidden bg-[#1A1C20] border border-white/10 hover:border-[#C5A059]/60 transition-all duration-300 shadow-2xl flex flex-col justify-between group">
       {/* Cinta "MUY PRONTO" (se saca poniendo comingSoon: false en la app) */}
@@ -72,9 +76,13 @@ export const AppCard: React.FC<AppCardProps> = ({
             </span>
             <div className="text-right">
               <span className="text-lg sm:text-xl font-serif font-bold text-[#C5A059]">
-                Elegí tu Plan
+                {esGratis ? (language === 'es' ? 'Gratis' : 'Free') : 'Elegí tu Plan'}
               </span>
-              <span className="block text-xs text-[#F9F6F0]/60 font-sans">{app.currency}{t.monthlyPrice}</span>
+              <span className="block text-xs text-[#F9F6F0]/60 font-sans">
+                {esGratis
+                  ? (language === 'es' ? 'Sin abono mensual' : 'No monthly fee')
+                  : <>{app.currency}{t.monthlyPrice}</>}
+              </span>
             </div>
           </div>
 
@@ -216,7 +224,7 @@ export const AppCard: React.FC<AppCardProps> = ({
             className="w-full py-3 px-4 bg-[#C5A059] text-black font-bold text-xs hover:bg-[#d4b068] transition-all flex items-center justify-center gap-2 uppercase tracking-widest shadow-md"
           >
             <Eye className="w-4 h-4" />
-            <span>{language === 'es' ? 'Ver cómo lo ve el cliente' : 'See the customer view'}</span>
+            <span>{language === 'es' ? 'Ver cómo lo ves' : 'See how it looks'}</span>
           </a>
         ) : (
           /* Apps sin demo en vivo: demo interna con capturas. */
@@ -234,7 +242,7 @@ export const AppCard: React.FC<AppCardProps> = ({
           className="w-full py-2.5 px-4 bg-[#0F1012] hover:bg-[#C5A059]/10 text-[#C5A059] border border-[#C5A059]/40 hover:border-[#C5A059] transition-all text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2"
         >
           <ExternalLink className="w-3.5 h-3.5 text-[#C5A059]" />
-          <span>{t.rentThisApp}</span>
+          <span>{esGratis ? t.getThisAppFree : t.rentThisApp}</span>
         </button>
       </div>
     </div>
