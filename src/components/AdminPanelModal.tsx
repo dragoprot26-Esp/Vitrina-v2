@@ -1545,10 +1545,10 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
                           />
                         </div>
 
-                        {/* Link de la página pública (botón "Ver cómo lo ve el cliente") */}
+                        {/* Link de la página pública (botón "Ver cómo lo ves") */}
                         <div className="sm:col-span-2">
                           <label className="text-xs text-[#C5A059] block mb-1 uppercase tracking-wider font-semibold">
-                            Link de la página pública (botón “Ver cómo lo ve el cliente”):
+                            Link de la página pública (botón “Ver cómo lo ves”):
                           </label>
                           <input
                             type="url"
