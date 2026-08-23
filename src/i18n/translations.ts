@@ -38,6 +38,7 @@ export const translations = {
     enterAdminPanel: 'PANEL ADMIN',
     monthlyPrice: '/mes',
     rentThisApp: 'ALQUILAR ESTA APP',
+    getThisAppFree: 'ADQUIRILA GRATIS',
 
     // Pricing Calculator
     pricingBadge: 'PLANES TRANSPARENTES',
@@ -92,6 +93,7 @@ export const translations = {
     enterAdminPanel: 'ADMIN PANEL',
     monthlyPrice: '/mo',
     rentThisApp: 'RENT THIS APP',
+    getThisAppFree: 'GET IT FREE',
 
     // Pricing Calculator
     pricingBadge: 'TRANSPARENT PRICING',
