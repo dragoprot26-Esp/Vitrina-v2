@@ -35,7 +35,8 @@ import {
   Clock,
   ArrowUpRight,
   Download,
-  Upload
+  Upload,
+  LogOut
 } from 'lucide-react';
 import { AppShowcase, AppCategory, SupportTicket, AppRentalLead, PageModel, PricingPlan, DemoTenant, ETIQUETAS_RUBRO } from '../types';
 import { listLeads, markLeadRead, deleteLead, CloudLead } from '../cloud';
@@ -1024,27 +1025,33 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
     <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-2 sm:p-4 overflow-y-auto">
       <div className="bg-[#1A1C20] border border-[#C5A059] w-full max-w-5xl max-h-[92vh] flex flex-col overflow-hidden shadow-2xl text-[#F9F6F0] my-auto">
         {/* Shield Header Bar */}
-        <div className="bg-[#0F1012] px-6 py-4 border-b border-white/10 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-[#C5A059] text-black font-bold flex items-center justify-center">
-              <Shield className="w-6 h-6" />
+        <div className="bg-[#0F1012] px-4 sm:px-6 py-3 sm:py-4 border-b border-white/10 flex flex-wrap items-center justify-between gap-3">
+          {/* basis-full en el celular: el título se queda con el renglón
+              entero y los botones bajan al de abajo. Sin eso, el título se
+              achicaba hasta desaparecer para hacerles lugar. */}
+          <div className="flex items-center gap-3 min-w-0 basis-full lg:basis-0 lg:flex-1">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 bg-[#C5A059] text-black font-bold flex items-center justify-center shrink-0">
+              <Shield className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <h2 className="text-xl font-serif font-bold text-white">
-                  Panel Admin General — Vitrina v2
+            <div className="min-w-0">
+              <div className="flex items-center gap-2 min-w-0">
+                <h2 className="text-base sm:text-xl font-serif font-bold text-white truncate">
+                  <span className="lg:hidden">Panel Admin</span>
+                  <span className="hidden lg:inline">Panel Admin General — Vitrina v2</span>
                 </h2>
-                <span className="bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-[10px] font-mono px-2 py-0.5 uppercase tracking-wider font-bold">
+                <span className="hidden xl:inline bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-[10px] font-mono px-2 py-0.5 uppercase tracking-wider font-bold shrink-0">
                   Escudo de Seguridad OK
                 </span>
               </div>
-              <p className="text-xs text-[#F9F6F0]/70">
+              <p className="hidden lg:block text-xs text-[#F9F6F0]/70">
                 Configuración y publicación de nuevas aplicaciones comerciales de alquiler
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          {/* shrink-0 y flex-wrap: los botones no se achican ni se salen del
+              recuadro. Sin esto, en el celular el último quedaba cortado. */}
+          <div className="flex flex-wrap items-center justify-end gap-2 shrink-0 w-full lg:w-auto">
             {onPublish && (
               <button
                 onClick={handlePublishClick}
@@ -1083,10 +1090,10 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
               <button
                 onClick={onLogout}
                 title="Cerrar sesión de administrador"
-                className="flex items-center gap-1.5 px-3 h-8 bg-[#0F1012] hover:bg-red-500/20 text-[#F9F6F0]/70 hover:text-red-300 text-[11px] font-bold uppercase tracking-wider transition-colors border border-white/10"
+                className="flex items-center gap-1.5 px-3 h-8 bg-red-500/10 hover:bg-red-500/25 text-red-300 hover:text-red-200 text-[11px] font-bold uppercase tracking-wider transition-colors border border-red-500/40"
               >
-                <Lock className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Salir</span>
+                <LogOut className="w-3.5 h-3.5" />
+                <span>Salir</span>
               </button>
             )}
             <button
