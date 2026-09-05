@@ -1,6 +1,194 @@
-import { AppShowcase, PricingPlan } from '../types';
+import { AppShowcase, PricingPlan } from './types';
 
 export const INITIAL_APPS: AppShowcase[] = [
+  /**
+   * ESPECTRO — la única del catálogo SIN página pública, y es a propósito.
+   *
+   * Las demás son un local: catálogo, pedidos, vidriera para el cliente. Esta
+   * es una herramienta que el técnico usa adentro de la máquina. No tiene nada
+   * que mostrarle a un cliente y no guarda nada en la nube.
+   *
+   * Por eso los campos de "vista pública" cuentan justamente eso, en vez de
+   * inventar una pantalla que no existe. Es un argumento de venta, no una
+   * carencia: al que mide ruidos en la casa de otro, que sus mediciones no
+   * viajen a ningún servidor le importa.
+   */
+  {
+    id: 'espectro',
+    name: 'ESPECTRO',
+    tagline: 'Escuchá lo que el oído no llega a escuchar. Ponés el teléfono cerca del motor, de la cañería o de la pared, y la app te muestra en qué frecuencia está el ruido, cuánto suena y cuándo aparece. Detecta sola el ruido raro y lo graba con la hora exacta.',
+    category: 'trabajo',
+    categoryLabel: 'Trabajadores & Oficios',
+    iconName: 'Activity',
+    monthlyPrice: 15000,
+    currency: 'ARS',
+    badgeText: 'NUEVA',
+
+    publicViewTitle: 'Sin página pública, y es a propósito',
+    publicViewDescription: 'Esta no es una app de local: es una herramienta que usás vos adentro de la máquina. Todo el análisis pasa en tu teléfono y no sale de ahí — ni las grabaciones, ni lo que mediste, ni en casa de quién lo mediste. Instalada, anda entera sin señal.',
+
+    adminViewTitle: 'Todo lo que suena, a la vista',
+    adminViewDescription: 'Espectrograma en cascada para ver cómo cambia el ruido con el tiempo, analizador de frecuencias, osciloscopio y vúmetro. Filtros para sacarle el ruido de fondo y quedarte con lo que buscás. Y un detector que graba solo cuando aparece algo raro.',
+
+    keyFeatures: [
+      'Te dice en qué frecuencia está el ruido',
+      'Graba sola cuando aparece algo raro',
+      'Cada grabación con la hora exacta',
+      'Anda sin señal, adentro de un sótano',
+      'Filtro para sacar el ruido de fondo',
+      'Barrido automático por tramos',
+      'Se instala en el celular como una app',
+      'Nada de lo que medís sale del teléfono',
+    ],
+
+    bannerUrl: '/screenshots/espectro/banner.jpg',
+    isActive: true,
+    featured: false,
+
+    screenshots: [
+      { id: 'esp-1', title: 'Todo junto, en una pantalla', type: 'admin',
+        url: '/screenshots/espectro/admin1.jpg',
+        description: 'El nivel, la frecuencia del pico, el espectrograma y el analizador, todo a la vez. Arriba, en rojo, el detector avisando que encontró algo: 1.507 Hz.',
+        highlights: ['Frecuencia del pico en vivo', 'Aviso de anomalía', 'Cuatro vistas a elección'] },
+
+      { id: 'esp-2', title: 'Espectrograma en cascada', type: 'admin',
+        url: '/screenshots/espectro/admin2.jpg',
+        description: 'El tiempo baja, la frecuencia va de izquierda a derecha. Un ruido que aparece y desaparece deja una marca que se ve. Podés congelar la pantalla y marcar con el dedo encima.',
+        highlights: ['Se congela para mirarlo', 'Trazás con el dedo', 'Te dice la nota musical'] },
+
+      { id: 'esp-3', title: 'Analizador de frecuencias', type: 'admin',
+        url: '/screenshots/espectro/admin3.jpg',
+        description: 'Las barras muestran cuánto hay de cada frecuencia, ahora mismo. El puntito blanco marca el máximo que alcanzó, para que no se te escape un pico corto.',
+        highlights: ['Marca de pico', 'Escala de verdad, en logarítmica', 'Filtro a la vista'] },
+
+      { id: 'esp-4', title: 'Osciloscopio', type: 'public',
+        url: '/screenshots/espectro/pub2.jpg',
+        description: 'La onda tal cual entra por el micrófono. Sirve para ver si lo que escuchás es un tono parejo o un golpeteo.',
+        highlights: ['La onda en vivo', 'Cuatro colores de pantalla', 'Pensado para mirar de noche'] },
+
+      { id: 'esp-5', title: 'Filtro de ruido y ecualizador', type: 'public',
+        url: '/screenshots/espectro/pub3.jpg',
+        description: 'Ocho bandas para sacarle lo que molesta: el zumbido de la luz, el viento, el soplido. Con preajustes ya hechos para los casos de siempre.',
+        highlights: ['Preajustes listos', 'Puerta de ruido', 'Notch de 50/60 Hz'] },
+
+      { id: 'esp-6', title: 'Con licencia, y nada más', type: 'public',
+        url: '/screenshots/espectro/pub1.jpg',
+        description: 'Se entra con la licencia, el usuario y la contraseña. Después la app abre sola, y funciona aunque no tengas una barrita de señal.',
+        highlights: ['Una licencia, un técnico', 'Después anda sin internet', '5 días de plazo al vencer'] },
+    ],
+
+    demoData: {
+      businessName: 'Servicio Técnico — Diagnóstico Acústico',
+      phone: '+54 9 11 5555-8899',
+      location: 'Trabajo a domicilio · CABA y GBA',
+      servicesOrProductsName: 'Diagnósticos hechos',
+      items: [
+        { id: 'esp-i1', title: 'Motor de portón — rulemán picado',
+          subtitle: 'Pico marcado en 1.507 Hz con armónicos. Grabado tres veces a la misma hora del ciclo.',
+          price: '$ 18.000', durationOrStock: 'Anomalía detectada',
+          imageUrl: '/screenshots/espectro/admin1.jpg', badge: 'Con grabación', category: 'Mecánica' },
+        { id: 'esp-i2', title: 'Fuga de aire comprimido en cañería',
+          subtitle: 'Silbido en la banda de 6 a 9 kHz. Se ubicó recorriendo la pared con el teléfono.',
+          price: '$ 24.000', durationOrStock: 'Resuelto',
+          imageUrl: '/screenshots/espectro/admin2.jpg', badge: 'Ubicada', category: 'Neumática' },
+        { id: 'esp-i3', title: 'Zumbido de tablero eléctrico',
+          subtitle: '100 Hz con armónicos: transformador flojo, no falla de aislación. Se descartó sin abrir nada.',
+          price: '$ 12.000', durationOrStock: 'Diagnosticado',
+          imageUrl: '/screenshots/espectro/admin3.jpg', badge: 'Sin desarmar', category: 'Electricidad' },
+      ],
+      collaborators: [],
+      sampleOrdersOrTurns: [],
+    },
+  },
+  {
+    id: 'vozregistro',
+    name: 'VozRegistro',
+    tagline: 'Contale el trabajo al teléfono y salí con el informe hecho. El técnico habla, la app escribe: datos del cliente, la falla, los materiales y el presupuesto. PDF con membrete y garantía, listo para entregar antes de subir a la camioneta.',
+    category: 'trabajo',
+    categoryLabel: 'Trabajadores & Oficios',
+    iconName: 'Mic',
+    monthlyPrice: 15000,
+    currency: 'ARS',
+    badgeText: 'NUEVA',
+
+    publicViewTitle: 'Tu página, la que ve el cliente',
+    publicViewDescription: 'Tu nombre, tu rubro, tus horarios y las fotos de tus trabajos. El cliente te pide presupuesto y te deja su opinión desde ahí mismo. Se comparte por WhatsApp con un link.',
+
+    adminViewTitle: 'Dictás y sale el informe',
+    adminViewDescription: 'Apretás el micrófono, contás lo que hiciste como se lo contarías a un compañero, y la app completa los campos sola. Revisás, y ya tenés el PDF para el cliente.',
+
+    keyFeatures: [
+      'Dictás y la app escribe el informe',
+      'PDF con tu membrete y tu garantía',
+      'Anda sin señal, en un sótano',
+      'Tu lista de clientes queda en TU teléfono',
+      'Galería de trabajos antes y después',
+      'Los clientes te piden presupuesto solos',
+      'Locales de repuestos cerca tuyo',
+      'Sin escribir una palabra a mano',
+    ],
+
+    bannerUrl: '/screenshots/vozregistro/banner.jpg',
+    isActive: true,
+    featured: true,
+    demoUrl: 'https://vozregistro-transcripci-n-verbal-2.vercel.app/?codigo=VOZ-DEMO-2026-0001',
+
+    screenshots: [
+      { id: 'voz-1', title: 'Tu página pública', type: 'public',
+        url: '/screenshots/vozregistro/pub1.jpg',
+        description: 'Tu nombre, tu rubro, tu teléfono y tus horarios. El cliente entra desde el link que le mandaste por WhatsApp y ya sabe quién sos y cómo ubicarte.',
+        highlights: ['Se comparte por WhatsApp', 'Tus horarios y tu zona', 'Botón de presupuesto'] },
+
+      { id: 'voz-2', title: 'Galería de trabajos', type: 'public',
+        url: '/screenshots/vozregistro/pub2.jpg',
+        description: 'El antes y el después de cada reparación. Es lo que convence a un cliente nuevo: no le contás lo que sabés hacer, se lo mostrás.',
+        highlights: ['Antes y después', 'Locales de repuestos', 'Reseñas de clientes'] },
+
+      { id: 'voz-3', title: 'Reseñas y contacto', type: 'public',
+        url: '/screenshots/vozregistro/pub3.jpg',
+        description: 'Los clientes dejan su opinión desde tu página. Vos las aprobás antes de que se publiquen: nadie te escribe nada sin que lo veas primero.',
+        highlights: ['Vos aprobás cada reseña', 'Pedidos de presupuesto', 'Todo en un link'] },
+
+      { id: 'voz-4', title: 'El informe, antes de entregarlo', type: 'admin',
+        url: '/screenshots/vozregistro/admin1.jpg',
+        description: 'Lo mirás en la pantalla antes de mandarlo. Si algo quedó mal, lo corregís ahí. Después es un botón: Descargar PDF.',
+        highlights: ['Vista previa', 'Corregís antes de enviar', 'Un botón y listo'] },
+
+      { id: 'voz-5', title: 'El PDF que recibe el cliente', type: 'admin',
+        url: '/screenshots/vozregistro/admin2.jpg',
+        description: 'Con tu nombre arriba, los datos del cliente, la falla, el detalle del trabajo, los materiales, el total y la garantía. El mismo papel que entrega una empresa grande.',
+        highlights: ['Tu membrete', 'Materiales y mano de obra', 'Garantía por escrito'] },
+
+      { id: 'voz-6', title: 'Repuestos cerca tuyo', type: 'admin',
+        url: '/screenshots/vozregistro/admin3.jpg',
+        description: 'Tu propia agenda de casas de repuestos: dirección, teléfono, horarios y el mapa para llegar. Cuando falta la pieza, no perdés media mañana buscando.',
+        highlights: ['Abrir en el mapa', 'Buscador por zona', 'Horarios de cada local'] },
+    ],
+
+    demoData: {
+      businessName: 'G. Servicio Técnico Especializado',
+      phone: '+54 9 11 5555-8899',
+      location: 'Av. Cabildo 2450, CABA',
+      servicesOrProductsName: 'Trabajos realizados',
+      items: [
+        { id: 'voz-i1', title: 'Heladera Samsung French Door',
+          subtitle: 'Sustitución de condensadores y reprogramación del control. Prueba de rendimiento a -18 °C.',
+          price: '$ 64.000', durationOrStock: 'Concretado',
+          imageUrl: '/screenshots/vozregistro/pub2.jpg', badge: 'Antes / Después', category: 'Refrigeración' },
+        { id: 'voz-i2', title: 'Tablero eléctrico — disyuntor',
+          subtitle: 'Cambio de disyuntor diferencial 25A 30mA e independización del circuito de jardín.',
+          price: '$ 64.000', durationOrStock: '90 días de garantía',
+          imageUrl: '/screenshots/vozregistro/admin2.jpg', badge: 'Con garantía', category: 'Electricidad' },
+        { id: 'voz-i3', title: 'Lavarropas que no centrifuga',
+          subtitle: 'Bomba de desagote cambiada. Dictado por voz, informe entregado en el momento.',
+          price: '$ 23.500', durationOrStock: 'Pausado',
+          imageUrl: '/screenshots/vozregistro/pub1.jpg', badge: 'Dictado', category: 'Lavarropas' },
+      ],
+      collaborators: [],
+      sampleOrdersOrTurns: [],
+    },
+  },
+
   {
     id: 'controlfichado',
     name: 'Control de Fichado y Horas',
