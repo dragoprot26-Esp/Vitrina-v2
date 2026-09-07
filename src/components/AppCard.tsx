@@ -14,7 +14,8 @@ import {
   Clock,
   ShoppingBag,
   Bell,
-  Code
+  Code,
+  BookOpen
 } from 'lucide-react';
 import { AppShowcase } from '../types';
 import { useLanguage } from '../context/LanguageContext';
@@ -235,6 +236,20 @@ export const AppCard: React.FC<AppCardProps> = ({
             <Play className="w-4 h-4 fill-black" />
             <span>{language === 'es' ? 'SOLICITAR DEMO' : 'REQUEST DEMO'}</span>
           </button>
+        )}
+
+        {/* Guía rápida: cómo se usa la app, con ejemplos de trabajo real.
+            Es una página suelta de `public/`, así que se corrige sin tocar la Vitrina. */}
+        {app.guiaUrl && (
+          <a
+            href={app.guiaUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full py-2.5 px-4 bg-[#0F1012] hover:bg-[#C5A059]/10 text-[#C5A059] border border-[#C5A059]/40 hover:border-[#C5A059] transition-all text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2"
+          >
+            <BookOpen className="w-3.5 h-3.5 text-[#C5A059]" />
+            <span>{language === 'es' ? 'Guía rápida' : 'Quick guide'}</span>
+          </a>
         )}
 
         <button
