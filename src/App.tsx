@@ -55,12 +55,18 @@ export default function App() {
         const nubePorId = new Map(
           (data.apps as AppShowcase[]).map((a) => [a.id, a])
         );
-        // El demoUrl es propiedad del CÓDIGO (no se edita en el panel): si la
-        // config publicada es vieja y no lo trae, igual lo tomamos de INITIAL_APPS
-        // para que el botón "Ver cómo lo ve el cliente" siempre aparezca.
+        // El demoUrl y la guiaUrl son propiedad del CÓDIGO (no se editan en el
+        // panel): si la config publicada es vieja y no los trae, igual se toman
+        // de INITIAL_APPS para que los botones "Ver cómo lo ve el cliente" y
+        // "Guía rápida" siempre aparezcan.
+        //
+        // ⚠️ Todo campo nuevo que sea del código y no del panel hay que sumarlo
+        // acá. Si no, la config publicada —que se guardó antes de que el campo
+        // existiera— lo pisa con `undefined` y el botón no aparece nunca, sin un
+        // solo error que lo explique.
         const merged = INITIAL_APPS.map((a) => {
           const nube = nubePorId.get(a.id);
-          return nube ? { ...nube, demoUrl: a.demoUrl } : a;
+          return nube ? { ...nube, demoUrl: a.demoUrl, guiaUrl: a.guiaUrl } : a;
         });
         setApps(merged);
       }
@@ -98,7 +104,7 @@ export default function App() {
   });
 
   // Dynamic category list (only rubros that have active apps), in a preferred order
-  const CATEGORY_ORDER = ['moda', 'estetica', 'gastronomia', 'barberia', 'salud', 'petshop', 'almacen', 'fitness', 'entretenimiento', 'masajes', 'trabajo'];
+  const CATEGORY_ORDER = ['moda', 'estetica', 'gastronomia', 'barberia', 'salud', 'petshop', 'almacen', 'fitness', 'entretenimiento', 'masajes'];
   const activeApps = apps.filter((a) => a.isActive);
   const availableCategories = Array.from(
     activeApps.reduce((map, a) => {
