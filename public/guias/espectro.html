@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ESPECTRO — Guía rápida</title>
+<link rel="icon" href="/icon-192.png">
+<meta name="description" content="Guía rápida de ESPECTRO: qué hace cada control y cómo se usa en trabajos reales.">
+<style>
+  :root{
+    --oro:#C5A059; --oro-claro:#d4b068; --negro:#0B0B0C; --panel:#131316;
+    --borde:#26262b; --texto:#F9F6F0; --tenue:#9b968c; --cyan:#00F0FF; --rojo:#FF3B30;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--negro);color:var(--texto);
+       font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       -webkit-text-size-adjust:100%}
+  .env{max-width:860px;margin:0 auto;padding:0 20px 80px}
+  a{color:var(--oro)}
+  header{border-bottom:1px solid var(--borde);background:#08080a;padding:28px 0 32px;margin-bottom:36px}
+  .volver{display:inline-flex;align-items:center;gap:7px;font-size:11px;letter-spacing:.18em;
+          text-transform:uppercase;text-decoration:none;color:var(--tenue);margin-bottom:22px}
+  .volver:hover{color:var(--oro)}
+  h1{font-size:clamp(28px,6vw,42px);margin:0 0 6px;letter-spacing:-.5px;font-weight:800}
+  .sub{color:var(--oro);font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+       font-weight:700;margin-bottom:14px}
+  .entrada{color:var(--tenue);font-size:15px;max-width:62ch;margin:0}
+  h2{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--oro);
+     margin:52px 0 18px;padding-bottom:9px;border-bottom:1px solid var(--borde);font-weight:800}
+  h3{font-size:18px;margin:30px 0 8px;font-weight:700}
+  p{margin:0 0 14px}
+  .tenue{color:var(--tenue)}
+  .caja{background:var(--panel);border:1px solid var(--borde);border-radius:8px;padding:20px 22px;margin:18px 0}
+  .caja h3{margin-top:0}
+  .paso{display:flex;gap:16px;margin:0 0 20px;align-items:flex-start}
+  .num{flex:0 0 30px;height:30px;border-radius:50%;background:var(--oro);color:#000;
+       font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;margin-top:2px}
+  .paso div p:last-child{margin-bottom:0}
+  .paso h3{margin:0 0 4px;font-size:16px}
+  table{width:100%;border-collapse:collapse;font-size:14px;margin:14px 0}
+  th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--borde);vertical-align:top}
+  th{color:var(--oro);font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:800}
+  td:first-child{white-space:nowrap;font-weight:700}
+  .tabla-env{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .aviso{border-left:3px solid var(--oro);background:#17140d;padding:15px 18px;border-radius:0 6px 6px 0;margin:18px 0}
+  .ojo{border-left:3px solid var(--rojo);background:#180d0c;padding:15px 18px;border-radius:0 6px 6px 0;margin:18px 0}
+  .aviso p:last-child,.ojo p:last-child{margin-bottom:0}
+  .et{display:inline-block;padding:2px 9px;border-radius:3px;font-size:11px;font-weight:800;
+      letter-spacing:.06em;font-family:ui-monospace,Menlo,Consolas,monospace}
+  .et-cyan{background:rgba(0,240,255,.12);color:var(--cyan);border:1px solid rgba(0,240,255,.35)}
+  .et-rojo{background:rgba(255,59,48,.12);color:var(--rojo);border:1px solid rgba(255,59,48,.35)}
+  .et-oro{background:rgba(197,160,89,.12);color:var(--oro);border:1px solid rgba(197,160,89,.4)}
+  ul{margin:0 0 14px;padding-left:20px}
+  li{margin-bottom:7px}
+  .caso{border:1px solid var(--borde);border-radius:8px;margin:18px 0;overflow:hidden}
+  .caso-t{background:#1a1a1e;padding:13px 20px;font-weight:800;font-size:15px;
+          border-bottom:1px solid var(--borde)}
+  .caso-c{padding:18px 20px}
+  .caso-c p:last-child{margin-bottom:0}
+  .lee{color:var(--oro);font-weight:700}
+  footer{margin-top:64px;padding-top:26px;border-top:1px solid var(--borde);
+         color:var(--tenue);font-size:13px}
+  @media(max-width:600px){
+    .env{padding:0 16px 60px}
+    .paso{gap:12px}
+    td:first-child{white-space:normal}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="env">
+    <a class="volver" href="/">&#8592; Volver a la Vitrina</a>
+    <div class="sub">Guía rápida</div>
+    <h1>ESPECTRO</h1>
+    <p class="entrada">
+      Un analizador de sonido en el teléfono. Lo acercás al motor, a la cañería o a
+      la pared, y te dice <strong>en qué frecuencia</strong> está el ruido,
+      <strong>cuánto suena</strong> y <strong>cuándo aparece</strong>. Cinco minutos
+      de lectura y la sabés usar.
+    </p>
+  </div>
+</header>
+
+<div class="env">
+
+  <div class="aviso">
+    <p><strong>Lo primero, para que no haya malentendidos:</strong> ESPECTRO
+    <em>mide</em>, no diagnostica. No te va a decir "el rulemán está roto". Te da
+    el número —la frecuencia, el nivel, la hora— y el oficio lo ponés vos. Eso es
+    justamente lo que sirve para discutir con un cliente o con un proveedor: un
+    número medido, no una impresión.</p>
+  </div>
+
+  <h2>Arrancar en 4 pasos</h2>
+
+  <div class="paso">
+    <div class="num">1</div>
+    <div>
+      <h3>Prendé el micrófono</h3>
+      <p class="tenue">El botón del micrófono, arriba a la derecha. El teléfono te va a
+      pedir permiso una vez: dale que sí. Sin eso no mide nada.</p>
+    </div>
+  </div>
+
+  <div class="paso">
+    <div class="num">2</div>
+    <div>
+      <h3>Acercá el teléfono a lo que suena</h3>
+      <p class="tenue">A 10 o 20 cm. No hace falta pegarlo. Si podés, apagá lo que
+      no te interesa (la radio, un ventilador) — cuanto más limpio el ambiente, más
+      claro se ve lo que buscás.</p>
+    </div>
+  </div>
+
+  <div class="paso">
+    <div class="num">3</div>
+    <div>
+      <h3>Mirá el número de arriba: <span class="et et-cyan">PEAK FREQ</span></h3>
+      <p class="tenue">Es la frecuencia donde más energía hay en este momento. Ese
+      es el número que te vas a llevar anotado.</p>
+    </div>
+  </div>
+
+  <div class="paso">
+    <div class="num">4</div>
+    <div>
+      <h3>Apretá <span class="et et-rojo">Grabar</span> y guardá la prueba</h3>
+      <p class="tenue">Graba con la hora exacta. Después lo escuchás con
+      <strong>Oír</strong> o te lo bajás con <strong>Export WAV</strong> para
+      mandarlo por WhatsApp o adjuntarlo a un presupuesto.</p>
+    </div>
+  </div>
+
+  <div class="aviso">
+    <p><strong>La grabación no se corta sola.</strong> Empieza cuando apretás y
+    termina cuando apretás <em>Detener &amp; Guardar</em>. Podés dejarla corriendo
+    mientras acomodás el teléfono o hacés arrancar la máquina. El tope son 5
+    minutos, para no llenarte la memoria sin que te des cuenta.</p>
+  </div>
+
+  <h2>Las cuatro pantallas</h2>
+
+  <p class="tenue">Arriba tenés cuatro modos de ver lo mismo. Se cambian con los
+  botones y no afectan la medición: es la misma señal, dibujada distinto.</p>
+
+  <div class="tabla-env">
+  <table>
+    <tr><th>Modo</th><th>Qué ves</th><th>Para qué te sirve</th></tr>
+    <tr>
+      <td>Espectrograma</td>
+      <td>Una cascada. El tiempo baja, la frecuencia va de izquierda a derecha, y el color es cuánto suena.</td>
+      <td><strong>Ruidos que van y vienen.</strong> Un golpeteo cada tanto deja una marca que se ve, aunque en el momento se te haya escapado.</td>
+    </tr>
+    <tr>
+      <td>RTA Espectro</td>
+      <td>Barras, como un ecualizador.</td>
+      <td><strong>Ruidos parejos.</strong> Un zumbido constante levanta siempre la misma barra. Es la pantalla para ponerle nombre a un zumbido.</td>
+    </tr>
+    <tr>
+      <td>Osciloscopio</td>
+      <td>La onda cruda.</td>
+      <td><strong>Golpes secos.</strong> Un click o un chasquido se ve como un pico, y se cuenta cada cuánto pasa.</td>
+    </tr>
+    <tr>
+      <td>Doble (Split)</td>
+      <td>Dos pantallas a la vez.</td>
+      <td>Para no andar cambiando mientras tenés el teléfono metido en algún lado.</td>
+    </tr>
+  </table>
+  </div>
+
+  <h2>Los controles, uno por uno</h2>
+
+  <h3>Rango de frecuencias (filtro)</h3>
+  <p>Le decís entre qué y qué frecuencia mirar. Todo lo de afuera se ignora. Es
+  <strong>el control que más cambia las cosas</strong>: si buscás un chillido
+  agudo y dejás el rango abierto, el ruido grave del ambiente te tapa todo.</p>
+
+  <h3><span class="et et-oro">VOX Auto</span> — que grabe sola</h3>
+  <p>Con esto prendido, la app se queda escuchando y <strong>graba sola</strong>
+  cada vez que aparece algo que se sale de lo normal. Ideal para el ruido que
+  aparece una vez cada veinte minutos y nunca cuando vos estás mirando: dejás el
+  teléfono ahí, te vas, y volvés a ver qué juntó.</p>
+
+  <h3>Sensibilidad</h3>
+  <p>Cuánto se tiene que salir de lo normal un sonido para que cuente como
+  "anomalía". Más bajo, agarra más cosas (y más falsas alarmas). Más alto, solo
+  lo grueso. Si te llenó de capturas de nada, subila.</p>
+
+  <h3>Filtro de ruido de fondo</h3>
+  <p>Baja lo parejo y constante —el aire acondicionado, la calle— para que quede
+  lo que aparece y desaparece. <strong>Para escuchar</strong> viene bárbaro.
+  <strong>Para medir</strong>, si querés el número más fiel, apagalo: todo filtro
+  toca la señal.</p>
+
+  <h3>Auto-ajuste por tramos</h3>
+  <p>Busca solo dónde está el ruido más fuerte y se acomoda ahí. Es el atajo
+  cuando no tenés idea de por dónde empezar: lo prendés, encuentra el pico, y
+  después vos afinás el rango a mano.</p>
+
+  <h3>Congelar y trazar</h3>
+  <p>En el espectrograma podés <strong>congelar</strong> la pantalla y marcar con
+  el dedo encima. Sirve para la captura que le mandás al cliente: le señalás
+  exactamente la marca de la que estás hablando.</p>
+
+  <h2>Cuatro ejemplos de trabajo</h2>
+
+  <div class="caso">
+    <div class="caso-t">1 · Una heladera que hace un ruido raro</div>
+    <div class="caso-c">
+      <p><strong>Cómo:</strong> rango de <strong>20 a 500 Hz</strong>, modo RTA.
+      Teléfono a 15 cm del compresor. Grabá 30 segundos con el compresor andando.</p>
+      <p><strong>Qué mirás:</strong> el <span class="lee">PEAK FREQ</span>. Un
+      compresor sano se sostiene en un valor y se queda ahí. Si en vez de un pico
+      firme ves el número saltando, o aparece una segunda barra que no estaba,
+      eso es lo que vas a revisar.</p>
+      <p><strong>Para qué te sirve:</strong> volvés a los 15 días, medís igual, y
+      comparás contra la grabación anterior. <strong>Ahí tenés algo que mostrar</strong>,
+      en vez de "me parece que suena distinto".</p>
+    </div>
+  </div>
+
+  <div class="caso">
+    <div class="caso-t">2 · Buscar una pérdida de agua adentro de la pared</div>
+    <div class="caso-c">
+      <p><strong>Cómo:</strong> rango de <strong>1.500 a 8.000 Hz</strong> (el
+      siseo del agua a presión vive ahí arriba). Filtro de ruido de fondo
+      prendido. Cerrá todas las canillas.</p>
+      <p><strong>Qué hacés:</strong> apoyás el teléfono contra la pared y lo vas
+      moviendo de a 30 cm, parando unos segundos en cada punto. Anotás el
+      <span class="lee">nivel en dB</span> de cada parada.</p>
+      <p><strong>Cómo se lee:</strong> el siseo <strong>se hace más fuerte cuanto
+      más cerca estás</strong>. No busques un número mágico: buscá dónde sube. El
+      punto más alto de todos es por dónde empezás a romper.</p>
+    </div>
+  </div>
+
+  <div class="caso">
+    <div class="caso-t">3 · Un zumbido eléctrico en un tablero</div>
+    <div class="caso-c">
+      <p><strong>Cómo:</strong> rango de <strong>20 a 300 Hz</strong>, modo RTA.</p>
+      <p><strong>Qué mirás:</strong> en Argentina la red es de <strong>50 Hz</strong>.
+      Un zumbido de red se planta en 50 y en sus múltiplos: 100, 150, 200. Si el
+      pico está ahí, es eléctrico. Si está en otro lado, andá a buscar por
+      mecánico.</p>
+      <p><strong>Ojo:</strong> esto te dice de dónde viene el ruido, no si el
+      tablero es peligroso. Para eso está tu oficio y tu pinza.</p>
+    </div>
+  </div>
+
+  <div class="caso">
+    <div class="caso-t">4 · El ruido que aparece una vez cada tanto</div>
+    <div class="caso-c">
+      <p><strong>Cómo:</strong> este es el caso para <span class="et et-oro">VOX Auto</span>.
+      Rango abierto (20 Hz – 20 kHz), sensibilidad media, VOX prendido. Apoyás el
+      teléfono cerca, lo enchufás al cargador, y lo dejás.</p>
+      <p><strong>Qué te queda:</strong> una lista de capturas, cada una con
+      <strong>la hora exacta</strong> y la frecuencia. Si el ruido aparece siempre
+      a la misma hora, o siempre a los tantos minutos de arrancar, la lista te lo
+      muestra sola.</p>
+      <p><strong>Esa lista es la prueba</strong> que le mostrás al cliente que
+      dice "a mí nunca me hizo eso cuando vino usted".</p>
+    </div>
+  </div>
+
+  <h2>Si algo no anda</h2>
+
+  <div class="tabla-env">
+  <table>
+    <tr><th>Lo que pasa</th><th>Qué hacer</th></tr>
+    <tr>
+      <td>No se mueve nada</td>
+      <td>El micrófono está apagado. Prendelo con el botón de arriba. Si te dice que no puede, revisá los permisos del navegador para el sitio.</td>
+    </tr>
+    <tr>
+      <td>Aprieto Grabar y no pasa nada</td>
+      <td>Ahora te va a decir por qué con un cartel naranja. Lo más común: el micrófono todavía se está prendiendo — esperá un segundo y volvé a apretar.</td>
+    </tr>
+    <tr>
+      <td>No escucho la grabación</td>
+      <td>Al apretar <strong>Oír</strong> se abre el reproductor del teléfono, con la línea de tiempo: si la barrita avanza, el audio está bien y es cuestión de volumen. <strong>Probá apagando el micrófono antes de escuchar</strong>: con el micrófono prendido, algunos celulares mandan el sonido al auricular en vez del parlante. Si no, bajala con <strong>Export WAV</strong> y abrila con el reproductor del teléfono.</td>
+    </tr>
+    <tr>
+      <td>Se llena de capturas de nada</td>
+      <td>Subí la sensibilidad, o cerrá el rango de frecuencias a lo que te interesa.</td>
+    </tr>
+    <tr>
+      <td>Todo se ve plano</td>
+      <td>El rango está cerrado en una zona donde no hay nada. Abrilo entero (20 Hz – 20 kHz) y volvé a cerrar de a poco.</td>
+    </tr>
+    <tr>
+      <td>Me pide la licencia</td>
+      <td>Escribí el código, el usuario y la contraseña que te dieron. Después de eso anda sin señal.</td>
+    </tr>
+  </table>
+  </div>
+
+  <h2>Tres cosas que conviene saber</h2>
+
+  <div class="caja">
+    <h3>Anda sin señal</h3>
+    <p class="tenue" style="margin-bottom:0">Instalada en el celular funciona entera
+    en un sótano, en un ascensor o en el campo. No consulta ningún servidor para
+    medir.</p>
+  </div>
+
+  <div class="caja">
+    <h3>Nada de lo que medís sale del teléfono</h3>
+    <p class="tenue" style="margin-bottom:0">Ni las grabaciones, ni lo que mediste,
+    ni en casa de quién lo mediste. Todo vive en tu celular. Lo que quieras
+    guardar en otro lado, lo bajás vos con <strong>Export WAV</strong>.</p>
+  </div>
+
+  <div class="ojo">
+    <p><strong>Y por eso mismo: lo que no bajás, se pierde.</strong> Las
+    grabaciones viven en la memoria de la app mientras la tengas abierta. Si es
+    una medición que vas a necesitar —para un presupuesto, para un reclamo, para
+    comparar dentro de un mes— <strong>bajala con Export WAV el mismo día</strong>.</p>
+  </div>
+
+  <footer>
+    <p>ESPECTRO · Guía rápida · Apps CyC</p>
+    <p><a href="/">Volver a la Vitrina</a></p>
+  </footer>
+
+</div>
+</body>
+</html>
