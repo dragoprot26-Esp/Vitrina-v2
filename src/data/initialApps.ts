@@ -41,6 +41,8 @@ export const INITIAL_APPS: AppShowcase[] = [
       'Nada de lo que medís sale del teléfono',
     ],
 
+    guiaUrl: '/guias/espectro.html',
+
     bannerUrl: '/screenshots/espectro/banner.jpg',
     isActive: true,
     featured: false,
