@@ -2,6 +2,202 @@ import { AppShowcase, PricingPlan } from './types';
 
 export const INITIAL_APPS: AppShowcase[] = [
   /**
+   * Control de Horarios — la hermana de Control de Fichado.
+   *
+   * Fichado es para MARCAR (entra, sale, el QR en la puerta). Esta es para
+   * LLEVAR LA CUENTA: la planilla de la semana, las extras al 50% y al 100%
+   * con la regla del sábado, la liquidación con adicionales y retenciones, y
+   * el papel para presentar.
+   *
+   * Como Fichado, va sin licencia y sin costo: la app la pone la casa. Y
+   * como Fichado, lo que se ve acá es plata de una persona, así que tiene
+   * candado propio y respaldo — sin eso no se entrega.
+   */
+  {
+    id: 'controlhorarios',
+    name: 'Control de Horarios',
+    tagline: 'Llevá tus propias horas y sabé cuánto tenés que cobrar, antes de que te lo digan. Cargás la semana, la app calcula las extras al 50% y al 100% con la regla del sábado, y te arma la planilla en PDF o Excel para presentar.',
+    category: 'trabajo',
+    categoryLabel: 'Trabajadores & Oficios',
+    iconName: 'Clock',
+    monthlyPrice: 0,
+    currency: '$',
+    badgeText: 'GRATIS',
+
+    publicViewTitle: 'Tu semana, día por día',
+    publicViewDescription: 'Cargás entrada, salida y almuerzo, y la app saca las horas normales y las extras sola. Cada día tiene su anotador para dejar dicho por qué te quedaste hasta las 19. La semana en curso se abre sola: no hay que buscarla.',
+
+    adminViewTitle: 'La liquidación, con el papel para presentar',
+    adminViewDescription: 'El detalle día por día con el importe de cada uno, los adicionales y las retenciones a la vista, y el neto final. Se baja en PDF con lugar para las dos firmas, o en Excel. Y hay un control de salidas anticipadas y horas faltantes.',
+
+    keyFeatures: [
+      'Extras al 50% y al 100%, calculadas solas',
+      'La regla del sábado, con corte horario',
+      'Anotador en cada día',
+      'Adicionales y retenciones, en rojo si te pasás',
+      'Planilla en PDF y Excel',
+      'Candado con huella o PIN',
+      'Copia de tus horas, en archivo o en tu cuenta',
+      'Instalada, anda sin señal',
+    ],
+
+    bannerUrl: '/screenshots/controlhorarios/banner.jpg',
+    isActive: true,
+    featured: false,
+
+    // No tiene página pública de inquilino: se abre y se usa. El botón va
+    // derecho a la app, sin ?codigo=.
+    demoUrl: 'https://control-de-horarios-standart.vercel.app/',
+
+    screenshots: [
+      { id: 'hor-1', title: 'La semana, de un vistazo', type: 'public',
+        url: '/screenshots/controlhorarios/pub1.jpg',
+        description: 'Los siete días con las horas de cada uno, y arriba el total de la semana separado en normales, al 50% y al 100%, con el estimado a cobrar. Abre siempre en la semana en curso.',
+        highlights: ['Abre en la semana de hoy', 'Extras separadas', 'Estimado semanal'] },
+
+      { id: 'hor-2', title: 'Liquidación, peso por peso', type: 'public',
+        url: '/screenshots/controlhorarios/pub2.jpg',
+        description: 'Cuánto sale cada tramo de horas con su tarifa, los adicionales que suman y las retenciones que restan, y el neto final. Con el detalle día por día abajo.',
+        highlights: ['Semana, mes o todo', 'Adicionales y retenciones', 'PDF y Excel'] },
+
+      { id: 'hor-3', title: 'Que no se te pierdan las horas', type: 'public',
+        url: '/screenshots/controlhorarios/pub3.jpg',
+        description: 'Una copia en un archivo, sin cuenta ni internet, y una cuenta propia con DNI o correo que sube sola. Más el candado con huella o PIN, porque acá se ve tu sueldo.',
+        highlights: ['Copia en un archivo', 'Cuenta propia sin licencia', 'Huella o PIN'] },
+
+      { id: 'hor-4', title: 'El panel del mes', type: 'admin',
+        url: '/screenshots/controlhorarios/admin1.jpg',
+        description: 'Cómo vienen las horas y los ingresos del mes, con la comparación contra los meses anteriores. Calculado con lo que cargaste: los meses sin datos no aparecen.',
+        highlights: ['Sin números inventados', 'Comparación mes a mes', 'Normales contra extras'] },
+
+      { id: 'hor-5', title: 'Control de salidas y faltantes', type: 'admin',
+        url: '/screenshots/controlhorarios/admin2.jpg',
+        description: 'Los días en que saliste antes o te faltaron horas, con la diferencia contra tu jornada. Sirve para llegar a la conversación con el dato, no con la memoria.',
+        highlights: ['Salidas anticipadas', 'Horas faltantes', 'Con la tolerancia que pongas'] },
+
+      { id: 'hor-6', title: 'Tu jornada y tus valores', type: 'admin',
+        url: '/screenshots/controlhorarios/admin3.jpg',
+        description: 'Tu horario habitual, el almuerzo, la tolerancia y la regla del sábado: hasta qué hora va al 50% y desde cuándo al 100%. El valor hora lo ponés vos, con coma y todo.',
+        highlights: ['Corte del sábado configurable', 'Extras automáticas o a mano', 'Entiende 4.500,50'] },
+    ],
+
+    demoData: {
+      businessName: 'Mis horas',
+      phone: '',
+      location: 'Jornada de 8 a 17',
+      servicesOrProductsName: 'Cómo se cuenta cada día',
+      items: [
+        { id: 'hor-i1', title: 'Día común', subtitle: 'De 8 a 17 con una hora de almuerzo: 8 horas normales.',
+          price: '8.0 hs', durationOrStock: 'Normal',
+          imageUrl: '/screenshots/controlhorarios/pub1.jpg', badge: 'Normal', category: 'Jornada' },
+        { id: 'hor-i2', title: 'Te quedaste hasta las 19', subtitle: 'Las dos horas de más entran al 50%, y queda anotado por qué.',
+          price: '+2.0 hs', durationOrStock: 'Al 50%',
+          imageUrl: '/screenshots/controlhorarios/pub2.jpg', badge: 'Extra 50%', category: 'Horas extras' },
+        { id: 'hor-i3', title: 'Sábado de 8 a 17', subtitle: 'Hasta las 13 al 50%, de 13 en adelante al 100%. La app hace el corte sola.',
+          price: '5 hs + 4 hs', durationOrStock: '50% y 100%',
+          imageUrl: '/screenshots/controlhorarios/admin3.jpg', badge: 'Regla del sábado', category: 'Horas extras' },
+      ],
+      collaborators: [],
+      sampleOrdersOrTurns: [],
+    },
+  },
+  /**
+   * Exquisiteces Caseras — repostería y comidas caseras.
+   *
+   * Lo que la distingue de las otras del rubro: los encargos de las clientas
+   * los escribe el SERVIDOR, no el navegador del dueño. Por eso él puede tener
+   * el panel abierto editando precios mientras entran pedidos, y no se pisa
+   * nada. Es la diferencia entre una app de catálogo y una que se puede usar
+   * un sábado a la mañana con la cocina llena.
+   */
+  {
+    id: 'exquisiteces',
+    name: 'Exquisiteces Caseras',
+    tagline: 'Tu repostería con página propia: la clienta ve las tortas, elige, encarga y le queda un código de retiro. A vos te entra el pedido al panel, con el teléfono listo para responderle por WhatsApp. El cobro es siempre tuyo, en tu negocio.',
+    category: 'gastronomia',
+    categoryLabel: 'Repostería & Comidas Caseras',
+    iconName: 'CakeSlice',
+    monthlyPrice: 5000,
+    currency: 'ARS',
+    badgeText: 'NUEVA',
+
+    publicViewTitle: 'La vidriera, abierta toda la noche',
+    publicViewDescription: 'Tu catálogo con hasta 3 fotos por producto, precios y los datos que quieras poner en cada uno (porciones, conservación, cómo se elabora). La clienta arma su canasto, elige retiro o envío, y manda el encargo. Le queda un código de retiro y a vos te llega al panel. Cuatro estilos de página para elegir cómo se ve.',
+
+    adminViewTitle: 'El sábado a la mañana, con la cocina llena',
+    adminViewDescription: 'Los encargos entran solos y quedan separados entre nuevos y concretados, cada uno con su código, sus productos y el botón de WhatsApp. Cargás productos, armás los Especiales del Finde por turnos y con cupos, aprobás las reseñas antes de que se publiquen, y sacás el cartel con el QR para pegar en la vidriera.',
+
+    keyFeatures: [
+      'El pedido te entra al panel, con código de retiro',
+      'Especiales del Finde por turnos y con cupos',
+      'Hasta 3 fotos y campos propios por producto',
+      'Botón de WhatsApp en cada encargo',
+      'Las reseñas se publican solo si vos las aprobás',
+      'Cartel con QR listo para imprimir',
+      'Envío a domicilio con costo configurable',
+      'Se instala en el celular como una app',
+    ],
+
+    bannerUrl: '/screenshots/exquisiteces/banner.jpg',
+    isActive: true,
+    featured: false,
+
+    screenshots: [
+      { id: 'exq-1', title: 'La portada que ve tu clienta', type: 'public',
+        url: '/screenshots/exquisiteces/pub1.jpg',
+        description: 'Tu logo, tu título y tus dos botones: hacer un pedido o reservar una fecha. Abajo, el catálogo separado por categorías, con el precio a la vista.',
+        highlights: ['Tu logo y tu portada', 'Categorías con contador', 'Cuatro estilos de página'] },
+
+      { id: 'exq-2', title: 'Especiales del Finde', type: 'public',
+        url: '/screenshots/exquisiteces/pub2.jpg',
+        description: 'La tarjeta especial para lo que se hace solo el fin de semana: precio del finde, para cuántas personas rinde y cuántos cupos quedan. Con el aviso de hasta cuándo tomás pedidos.',
+        highlights: ['Cupos que se descuentan', 'Turno de retiro a elección', 'Cierre de pedidos avisado'] },
+
+      { id: 'exq-3', title: 'Reseñas y consultas', type: 'public',
+        url: '/screenshots/exquisiteces/pub3.jpg',
+        description: 'Las clientas dejan su opinión con estrellas y te mandan consultas por presupuestos, eventos o mesas dulces. Nada se publica sin que vos lo aprobés desde el panel.',
+        highlights: ['Aprobás antes de publicar', 'Consultas con teléfono', 'Promedio de estrellas real'] },
+
+      { id: 'exq-4', title: 'Tu catálogo, desde el panel', type: 'admin',
+        url: '/screenshots/exquisiteces/admin1.jpg',
+        description: 'Cargás cada producto con hasta 3 fotos, su precio y los campos que vos quieras agregar. Podés pausar uno sin borrarlo, para cuando no tenés ingredientes.',
+        highlights: ['Hasta 3 fotos por producto', 'Campos propios que agregás vos', 'Pausar sin perder el producto'] },
+
+      { id: 'exq-5', title: 'Los platos del finde', type: 'admin',
+        url: '/screenshots/exquisiteces/admin2.jpg',
+        description: 'Armás la edición especial de cada fin de semana: qué hacés, a qué precio, para cuántos rinde y cuántos cupos ponés. Se muestra solo mientras vos la tengas encendida.',
+        highlights: ['Cupos por plato', 'Etiquetas destacadas', 'Se enciende y se apaga'] },
+
+      { id: 'exq-6', title: 'El cartel con el QR', type: 'admin',
+        url: '/screenshots/exquisiteces/admin3.jpg',
+        description: 'El QR de tu página, con el texto que vos escribas debajo, listo para imprimir en un afiche o descargar como imagen. Se pega en la vidriera y la clienta entra con la cámara.',
+        highlights: ['Afiche en PDF', 'Imagen PNG para redes', 'Apunta a TU catálogo'] },
+    ],
+
+    demoData: {
+      businessName: 'Exquisiteces Caseras & Repostería de Autor',
+      phone: '+54 9 11 5555-2040',
+      location: 'Elaboración propia · retiro en el local y envío a domicilio',
+      servicesOrProductsName: 'Del catálogo',
+      items: [
+        { id: 'exq-i1', title: 'Torta Rogel artesanal',
+          subtitle: 'Masa hojaldrada casera, dulce de leche repostero y merengue italiano flameado.',
+          price: '$ 18.500', durationOrStock: '10 a 12 porciones',
+          imageUrl: '/screenshots/exquisiteces/admin1.jpg', badge: 'Recomendado', category: 'Tortas & Pasteles' },
+        { id: 'exq-i2', title: 'Banquete criollo del finde',
+          subtitle: 'Costillar al horno de barro con papas rústicas. Edición del fin de semana, por encargo.',
+          price: '$ 26.500', durationOrStock: 'Para 3 o 4 personas',
+          imageUrl: '/screenshots/exquisiteces/pub2.jpg', badge: 'Cupos limitados', category: 'Especiales del Finde' },
+        { id: 'exq-i3', title: 'Box de alfajores de maicena',
+          subtitle: 'Doce alfajores caseros, con coco rallado y dulce de leche repostero.',
+          price: '$ 9.800', durationOrStock: 'Docena',
+          imageUrl: '/screenshots/exquisiteces/pub1.jpg', badge: 'Para regalar', category: 'Panadería & Alfajores' },
+      ],
+      collaborators: [],
+      sampleOrdersOrTurns: [],
+    },
+  },
+  /**
    * ESPECTRO — la única del catálogo SIN página pública, y es a propósito.
    *
    * Las demás son un local: catálogo, pedidos, vidriera para el cliente. Esta
