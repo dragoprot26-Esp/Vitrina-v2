@@ -3,7 +3,6 @@ import {
   Eye,
   Shield,
   CheckCircle2,
-  Play,
   ArrowRight,
   Sparkles,
   Users,
@@ -22,13 +21,11 @@ import { useLanguage } from '../context/LanguageContext';
 
 interface AppCardProps {
   app: AppShowcase;
-  onOpenDemo: (app: AppShowcase, viewMode: 'public' | 'admin') => void;
   onOpenContactForApp: (app: AppShowcase) => void;
 }
 
 export const AppCard: React.FC<AppCardProps> = ({
   app,
-  onOpenDemo,
   onOpenContactForApp,
 }) => {
   const { t, language } = useLanguage();
@@ -216,8 +213,24 @@ export const AppCard: React.FC<AppCardProps> = ({
 
       {/* Card Footer Buttons */}
       <div className="p-6 pt-0 space-y-2.5">
-        {app.demoUrl ? (
-          /* Demo pública REAL (abre la página del inquilino de prueba). Estilo dorado de la página. */
+        {/*
+          ══════════════════════════════════════════════════════════════
+           UN SOLO BOTÓN: "VER CÓMO LO VES" — Y ABRE LA APP DE VERDAD
+
+           Antes había un segundo botón, "SOLICITAR DEMO", que salía cuando
+           la app no tenía `demoUrl`. No pedía ninguna demo: abría una
+           pantalla ARMADA ACÁ ADENTRO que imitaba la app con encargos y
+           empleados inventados —nombres y teléfonos incluidos—. El que
+           miraba la Vitrina creía estar viendo la app funcionando.
+
+           Se sacó. Ahora, o se abre la app publicada —la de verdad, con
+           datos de verdad— o no hay botón. Si a una app le falta el
+           `demoUrl`, la tarjeta queda sin botón principal: es un hueco
+           visible, que se arregla poniendo el link, en vez de taparse solo
+           con una imitación.
+          ══════════════════════════════════════════════════════════════
+        */}
+        {app.demoUrl && (
           <a
             href={app.demoUrl}
             target="_blank"
@@ -227,15 +240,6 @@ export const AppCard: React.FC<AppCardProps> = ({
             <Eye className="w-4 h-4" />
             <span>{language === 'es' ? 'Ver cómo lo ves' : 'See how it looks'}</span>
           </a>
-        ) : (
-          /* Apps sin demo en vivo: demo interna con capturas. */
-          <button
-            onClick={() => onOpenDemo(app, activeViewTab)}
-            className="w-full py-3 px-4 bg-[#C5A059] text-black font-bold text-xs hover:bg-[#d4b068] transition-all flex items-center justify-center gap-2 uppercase tracking-widest shadow-md"
-          >
-            <Play className="w-4 h-4 fill-black" />
-            <span>{language === 'es' ? 'SOLICITAR DEMO' : 'REQUEST DEMO'}</span>
-          </button>
         )}
 
         {/* Guía rápida: cómo se usa la app, con ejemplos de trabajo real.
