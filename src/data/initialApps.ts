@@ -1,4 +1,4 @@
-import { AppShowcase, PricingPlan } from './types';
+import { AppShowcase, PricingPlan } from '../types';
 
 export const INITIAL_APPS: AppShowcase[] = [
   /**
@@ -137,6 +137,11 @@ export const INITIAL_APPS: AppShowcase[] = [
       'Envío a domicilio con costo configurable',
       'Se instala en el celular como una app',
     ],
+
+    /* El botón "Ver cómo lo ves" abre ESTO: el catálogo real del negocio de
+       prueba. El `?codigo=` no es opcional — sin él, la app muestra la
+       pantalla que le pide la licencia al dueño, no la vidriera. */
+    demoUrl: 'https://exquisiteces-caseras2.vercel.app/?codigo=EXQ-PREM-2026-QXVK',
 
     bannerUrl: '/screenshots/exquisiteces/banner.jpg',
     isActive: true,
