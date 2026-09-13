@@ -3,7 +3,6 @@ import { loadConfig, getSession, saveConfig, signOut } from './cloud';
 import { Header } from './components/Header';
 import { HeroSection } from './components/HeroSection';
 import { AppCard } from './components/AppCard';
-import { AppDemoModal } from './components/AppDemoModal';
 import { AdminPanelModal } from './components/AdminPanelModal';
 import { AdminAccessModal } from './components/AdminAccessModal';
 import { PricingCalculator } from './components/PricingCalculator';
@@ -30,8 +29,6 @@ export default function App() {
   const [activeCategory, setActiveCategory] = useState<string>('all');
 
   // Modals Control State
-  const [demoApp, setDemoApp] = useState<AppShowcase | null>(null);
-  const [demoInitialMode, setDemoInitialMode] = useState<'public' | 'admin'>('public');
   const [isAdminOpen, setIsAdminOpen] = useState<boolean>(false);
   // Candado del panel Escudo: pide credenciales antes de abrir
   const [isAdminUnlocked, setIsAdminUnlocked] = useState<boolean>(false);
@@ -130,11 +127,6 @@ export default function App() {
 
   const handleDeleteApp = (appId: string) => {
     setApps(apps.filter((a) => a.id !== appId));
-  };
-
-  const handleOpenDemo = (app: AppShowcase, viewMode: 'public' | 'admin') => {
-    setDemoApp(app);
-    setDemoInitialMode(viewMode);
   };
 
   const handleOpenContactForApp = (app: AppShowcase) => {
@@ -237,7 +229,6 @@ export default function App() {
             <AppCard
               key={appItem.id}
               app={appItem}
-              onOpenDemo={handleOpenDemo}
               onOpenContactForApp={handleOpenContactForApp}
             />
           ))}
@@ -352,18 +343,9 @@ export default function App() {
         </div>
       </footer>
 
-      {/* Interactive Demo Modal */}
-      {demoApp && (
-        <AppDemoModal
-          app={demoApp}
-          initialMode={demoInitialMode}
-          onClose={() => setDemoApp(null)}
-          onOpenContact={(appName) => {
-            setContactAppName(appName);
-            setIsContactOpen(true);
-          }}
-        />
-      )}
+      {/* Acá vivía el modal de la demo imitada. Se sacó junto con el botón
+          "Solicitar Demo": mostraba encargos y empleados inventados como si
+          fueran la app andando. Ver la nota en AppCard.tsx. */}
 
       {/* Candado de acceso al Panel Escudo */}
       <AdminAccessModal
