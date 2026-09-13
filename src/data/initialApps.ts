@@ -153,20 +153,29 @@ export const INITIAL_APPS: AppShowcase[] = [
         description: 'La tarjeta especial para lo que se hace solo el fin de semana: precio del finde, para cuántas personas rinde y cuántos cupos quedan. Con el aviso de hasta cuándo tomás pedidos.',
         highlights: ['Cupos que se descuentan', 'Turno de retiro a elección', 'Cierre de pedidos avisado'] },
 
-      { id: 'exq-3', title: 'Reseñas y consultas', type: 'public',
-        url: '/screenshots/exquisiteces/pub3.jpg',
-        description: 'Las clientas dejan su opinión con estrellas y te mandan consultas por presupuestos, eventos o mesas dulces. Nada se publica sin que vos lo aprobés desde el panel.',
-        highlights: ['Aprobás antes de publicar', 'Consultas con teléfono', 'Promedio de estrellas real'] },
+      /* ── FALTA, A PROPÓSITO: exq-3 "Reseñas y consultas" (pub3.jpg) ──────
+         La captura que había mostraba cuatro opiniones firmadas por gente que
+         no existe ("Claudia V.", "Marcelo G.", "Valeria S.", "Esteban M.") con
+         un promedio de 4,8 estrellas. Un producto de ejemplo es contenido de
+         muestra; una reseña firmada es un testimonio, y el que mira la Vitrina
+         está decidiendo si alquila la app.
+         Se vuelve a sacar desde la app ya publicada —sin reseñas, o con las
+         reales— y recién ahí se agrega acá. Hasta entonces no se lista, para
+         que la galería no quede con una imagen rota. */
 
       { id: 'exq-4', title: 'Tu catálogo, desde el panel', type: 'admin',
         url: '/screenshots/exquisiteces/admin1.jpg',
         description: 'Cargás cada producto con hasta 3 fotos, su precio y los campos que vos quieras agregar. Podés pausar uno sin borrarlo, para cuando no tenés ingredientes.',
         highlights: ['Hasta 3 fotos por producto', 'Campos propios que agregás vos', 'Pausar sin perder el producto'] },
 
-      { id: 'exq-5', title: 'Los platos del finde', type: 'admin',
-        url: '/screenshots/exquisiteces/admin2.jpg',
-        description: 'Armás la edición especial de cada fin de semana: qué hacés, a qué precio, para cuántos rinde y cuántos cupos ponés. Se muestra solo mientras vos la tengas encendida.',
-        highlights: ['Cupos por plato', 'Etiquetas destacadas', 'Se enciende y se apaga'] },
+      /* ── FALTA, A PROPÓSITO: exq-5 "Los platos del finde" (admin2.jpg) ───
+         La captura que había traía abajo "Reservas Registradas Recientes (1)"
+         con un encargo cerrado a nombre de una persona y su número de
+         teléfono. Eso es un registro inventado de alguien, no un producto de
+         muestra — y el teléfono, aunque salga de la nada, puede ser el de
+         alguien de verdad.
+         Misma solución que exq-3: se saca de nuevo con la lista de reservas
+         vacía y ahí entra. */
 
       { id: 'exq-6', title: 'El cartel con el QR', type: 'admin',
         url: '/screenshots/exquisiteces/admin3.jpg',
