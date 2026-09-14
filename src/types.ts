@@ -57,6 +57,23 @@ export interface AppShowcase {
   adminViewDescription: string;
   keyFeatures: string[];
   screenshots: AppScreenshot[];
+  /**
+   * Guía rápida de la app: cómo se usa, con ejemplos.
+   *
+   * Es una página suelta dentro de `public/` (por ejemplo
+   * `/guias/espectro.html`), no una pantalla de la Vitrina. Va así a propósito:
+   * se puede escribir y corregir sin tocar el código de la Vitrina, y el link
+   * se manda por WhatsApp solo.
+   *
+   * Si está, la ficha muestra el botón "Guía rápida".
+   *
+   * ⚠️ ESTE CAMPO YA SE HABÍA ESCRITO UNA VEZ Y SE PERDIÓ: la copia que está
+   * en GitHub no lo tenía, así que `initialApps.ts` lo usaba sin que existiera
+   * en los tipos. Andaba igual —Vite borra los tipos al compilar— pero `tsc`
+   * fallaba, y un chequeo que falla siempre es un chequeo que nadie mira.
+   */
+  guiaUrl?: string;
+
   bannerUrl: string;
   demoData: {
     businessName: string;
