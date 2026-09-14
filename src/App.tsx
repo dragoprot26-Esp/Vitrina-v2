@@ -93,15 +93,16 @@ export default function App() {
     return Array.from(new Set([a.category, ...extras].filter(Boolean)));
   };
 
-  // Filtered Apps
-  const filteredApps = apps.filter((app) => {
-    if (!app.isActive) return false;
-    if (activeCategory === 'all') return true;
-    return rubrosDe(app).includes(activeCategory);
-  });
-
   // Dynamic category list (only rubros that have active apps), in a preferred order
-  const CATEGORY_ORDER = ['moda', 'estetica', 'gastronomia', 'barberia', 'salud', 'petshop', 'almacen', 'fitness', 'entretenimiento', 'masajes'];
+  /* El orden en que se muestran los rubros, tanto en las pestañas como en las
+     franjas del catálogo.
+
+     ⚠️ 'trabajo' estaba FUERA de esta lista. No se notaba porque `indexOf`
+     devuelve -1 para lo que no encuentra, y -1 ordena antes que todo: quedaba
+     primero de casualidad. Ahora está puesto, y está primero porque así se
+     venía viendo. Un rubro nuevo que no figure acá va a seguir saltando al
+     principio — si aparece uno, se agrega en el lugar que le toque. */
+  const CATEGORY_ORDER = ['trabajo', 'moda', 'estetica', 'gastronomia', 'barberia', 'salud', 'petshop', 'almacen', 'fitness', 'entretenimiento', 'masajes'];
   const activeApps = apps.filter((a) => a.isActive);
   const availableCategories = Array.from(
     activeApps.reduce((map, a) => {
@@ -114,7 +115,16 @@ export default function App() {
       return map;
     }, new Map<string, string>())
   ).sort((a, b) => CATEGORY_ORDER.indexOf(a[0]) - CATEGORY_ORDER.indexOf(b[0]));
-  const countFor = (cat: string) => activeApps.filter((a) => rubrosDe(a).includes(cat)).length;
+  /* Las apps de un rubro, en el orden del catálogo. Es la MISMA cuenta que
+     muestra la pestaña, así el número de arriba y lo que se ve abajo no se
+     pueden contradecir. */
+  const appsDelRubro = (cat: string) => activeApps.filter((a) => rubrosDe(a).includes(cat));
+  const countFor = (cat: string) => appsDelRubro(cat).length;
+
+  /* Qué franjas se dibujan: todas, o solo la del rubro elegido en la pestaña. */
+  const rubrosAMostrar = activeCategory === 'all'
+    ? availableCategories
+    : availableCategories.filter(([cat]) => cat === activeCategory);
 
   // Admin Handlers
   const handleAddApp = (newApp: AppShowcase) => {
@@ -223,15 +233,56 @@ export default function App() {
           </div>
         </div>
 
-        {/* Apps Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredApps.map((appItem) => (
-            <AppCard
-              key={appItem.id}
-              app={appItem}
-              onOpenContactForApp={handleOpenContactForApp}
-            />
-          ))}
+        {/*
+          ══════════════════════════════════════════════════════════════
+           EL CATÁLOGO, SEPARADO POR RUBRO
+
+           Antes eran 29 tarjetas una atrás de la otra: para encontrar las de
+           gastronomía había que tocar la pestaña, o reconocerlas de memoria.
+           Ahora cada rubro tiene su franja con el nombre y cuántas apps
+           tiene, y las pestañas de arriba quedan igual: sirven para ir
+           directo a una sola franja.
+
+           ⚠️ Una app puede estar en DOS rubros (Tienda Elección está en
+           Almacén y en Moda). Aparece en las dos franjas, a propósito: es la
+           misma cuenta que muestran las pestañas, y así el número de arriba
+           nunca contradice lo que se ve abajo. Por eso la `key` lleva el
+           rubro adelante — si fuera solo el id, React vería dos tarjetas con
+           el mismo nombre.
+          ══════════════════════════════════════════════════════════════
+        */}
+        <div className="space-y-14">
+          {rubrosAMostrar.map(([cat, label]) => {
+            const delRubro = appsDelRubro(cat);
+            if (delRubro.length === 0) return null;
+            return (
+              <section key={cat} id={`rubro-${cat}`}>
+
+                {/* La franja: barra dorada, nombre del rubro, cuántas hay, y
+                    la línea que se va apagando hasta el borde. */}
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-6">
+                  <div className="h-7 w-1 bg-[#C5A059] shrink-0" />
+                  <h3 className="text-xl sm:text-2xl font-serif font-bold text-[#F9F6F0] tracking-tight shrink-0">
+                    {label}
+                  </h3>
+                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#C5A059] border border-[#C5A059]/40 px-2 py-0.5 shrink-0">
+                    {delRubro.length} {delRubro.length === 1 ? 'app' : 'apps'}
+                  </span>
+                  <div className="h-px flex-1 min-w-[24px] bg-gradient-to-r from-[#C5A059]/45 to-transparent" />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {delRubro.map((appItem) => (
+                    <AppCard
+                      key={`${cat}-${appItem.id}`}
+                      app={appItem}
+                      onOpenContactForApp={handleOpenContactForApp}
+                    />
+                  ))}
+                </div>
+              </section>
+            );
+          })}
         </div>
       </main>
 
