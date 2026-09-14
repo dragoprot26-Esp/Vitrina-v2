@@ -166,7 +166,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   return (
     <section className="relative bg-[#0F1012] text-[#F9F6F0] overflow-hidden py-16 px-4 sm:px-6 lg:px-8 border-b border-white/10">
       {/* Editorial background subtle glow */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#C5A059]/10 rounded-full blur-[120px] pointer-events-none"></div>
+      {/* El resplandor dorado del fondo. `max-w-full`: medía 600 px fijos, así
+          que en una pantalla de 400 px se salía 100 px por cada lado y
+          empujaba la página a lo ancho. Es una mancha borrosa de adorno —
+          que mida lo que mida la pantalla no le cambia nada. */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] max-w-full h-[300px] bg-[#C5A059]/10 rounded-full blur-[120px] pointer-events-none"></div>
 
       <div className="max-w-6xl mx-auto relative z-10 text-center space-y-6">
         {/* Top Tagline */}

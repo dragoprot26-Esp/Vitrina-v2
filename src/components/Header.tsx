@@ -92,8 +92,15 @@ export const Header: React.FC<HeaderProps> = ({
             className="w-9 h-9 sm:w-10 sm:h-10 bg-[#1A1C20] border-2 border-[#C5A059] text-[#C5A059] hover:bg-[#C5A059] hover:text-black transition-all flex items-center justify-center shadow-lg group relative shrink-0"
           >
             <Shield className="w-4 h-4 sm:w-5 sm:h-5 text-[#C5A059] group-hover:text-black transition-colors group-hover:scale-110" />
-            {/* Tooltip on Hover */}
-            <span className="absolute -bottom-9 left-1/2 -translate-x-1/2 bg-[#0F1012] text-[#C5A059] border border-[#C5A059]/50 px-2 py-0.5 text-[9px] font-mono font-bold uppercase tracking-wider whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 shadow-xl">
+            {/* Tooltip on Hover.
+
+                `hidden sm:block`: en el celular este cartelito NO se puede ver
+                —no hay "pasar el mouse por encima"— pero igual ocupaba lugar, y
+                se salía 16 px del borde derecho. Eso solo era una **barra de
+                desplazamiento horizontal** en toda la página, por un cartel
+                invisible. El botón ya tiene `title`, así que en la computadora
+                no se pierde nada. */}
+            <span className="hidden sm:block absolute -bottom-9 left-1/2 -translate-x-1/2 bg-[#0F1012] text-[#C5A059] border border-[#C5A059]/50 px-2 py-0.5 text-[9px] font-mono font-bold uppercase tracking-wider whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 shadow-xl">
               {t.adminShield}
             </span>
           </button>
